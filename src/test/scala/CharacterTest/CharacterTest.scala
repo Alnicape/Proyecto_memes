@@ -6,8 +6,8 @@ import munit.FunSuite
 
 class CharacterTest extends FunSuite {
   test("Character init works"){
-    val KnightTest = new Knight("Lancelot",10,10,10)
-    assertEquals(KnightTest.Name,"Lancelot")
+    val KnightTest = new Knight("MegaKnight",10,10,10)
+    assertEquals(KnightTest.Name,"MegaKnight")
     assertEquals(KnightTest.HealthPoints,10)
     assertEquals(KnightTest.Defense,10)
     assertEquals(KnightTest.Weight,10)

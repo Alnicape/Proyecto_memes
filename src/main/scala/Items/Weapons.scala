@@ -12,4 +12,4 @@ class Dagger(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character) e
 class Sword(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character) extends Weapon(Name, Weight, PhysicalATKPoints, Owner)
 class Bow(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character) extends Weapon(Name, Weight, PhysicalATKPoints, Owner)
 class Wand(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character, MagicATKPoints: Int) extends MagicWeapon(Name, Weight, PhysicalATKPoints, Owner, MagicATKPoints)
-class Stick(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character, MagicATKPoints: Int) extends MagicWeapon(Name, Weight, PhysicalATKPoints, Owner, MagicATKPoints)
+class Staff(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character, MagicATKPoints: Int) extends MagicWeapon(Name, Weight, PhysicalATKPoints, Owner, MagicATKPoints)
