@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package CharacterTest
 
-import cl.uchile.dcc.Characters.*
+import cl.uchile.dcc.Units.*
 import munit.FunSuite
 
 class CharacterInterfaceTest extends FunSuite {

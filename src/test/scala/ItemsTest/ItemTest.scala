@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package ItemsTest
 
-import cl.uchile.dcc.Characters.{Archer, BlackWizard, Knight, Thief, WhiteWizard}
+import cl.uchile.dcc.Units.{Archer, BlackWizard, Knight, Thief, WhiteWizard}
 import cl.uchile.dcc.Items.*
 import munit.FunSuite
 

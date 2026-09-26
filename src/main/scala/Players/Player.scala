@@ -1,11 +1,11 @@
 package cl.uchile.dcc
 package Players
 
-import Characters.CharacterInterface
+import cl.uchile.dcc.Units.Units
 
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
 
 class Player(val Name : String):
-  var Units = ListBuffer[CharacterInterface]()
+  var UnitsList = ListBuffer[Units]()
   var Defeated: Boolean = false
