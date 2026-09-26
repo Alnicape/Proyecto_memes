@@ -9,4 +9,5 @@ class Enemy(val Name:String, var HP: Int, val ATK: Int, var Defense: Int, val We
   def AddBar(actionQuantity:Int):Unit = {
     ActionBar+=actionQuantity
   }
+  def GetActionBar():Int = ActionBar
 }

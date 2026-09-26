@@ -9,20 +9,32 @@ import scala.compiletime.uninitialized
 
 class TurnScheduler:
   //Attributes
-  def UnitsList : ListBuffer[Units] = ListBuffer[Units]()
-  def ActionBars: ListBuffer[Int] = ListBuffer[Int]()
-  def Turn: Units = uninitialized
+  private def UnitsList : ListBuffer[Units] = ListBuffer[Units]()
+  private def ActionBars: ListBuffer[Int] = ListBuffer[Int]()
   //Methods
-  def PutUnit(puttedUnit:Units) : Unit = {
+  private def PutUnit(puttedUnit:Units) : Unit = {
     UnitsList += puttedUnit
   }
-  def GetUnit(index:Int): Units = {
+  private def GetUnit(index:Int): Units = {
     UnitsList(index)    
   }
-  def ResetBar(unit:Units): Unit = {
-    unit.ActionBar = 0
+  private def ResetBar(unit:Units): Unit = {
+    unit.ResetBar()
   }
-  def AddAllBars(ActionPoints:Int): Unit
-  def MaxBar(unit:Units) : Int
-  def CompletedBar(unit:Units): Boolean
-  def CompletedUnits(): ListBuffer[Units]
+  private def AddAllBars(ActionPoints:Int): Unit = {
+    for (x <- UnitsList) {x.AddBar(ActionPoints)} 
+  }
+  private def MaxBar(unit:Units) : Int = {
+    unit.Weight //Still don´t know how to implement because the difference between character and enemy maxBar 
+  }
+  private def CompletedBar(unit:Units): Boolean = {
+    unit.GetActionBar()>=unit.Weight
+  }
+  private def CompletedUnits(): ListBuffer[Units] = {
+    val completed = ListBuffer[Units]()
+    for (x<-UnitsList){if CompletedBar(x) then {completed += x}}
+    completed
+  }
+  private def turn():Units = {
+    CompletedUnits().head
+  }
