@@ -1,5 +1,5 @@
 package cl.uchile.dcc
-package CharacterTest
+package UnitsTest
 
 import cl.uchile.dcc.Units.Enemy
 import munit.FunSuite
@@ -10,7 +10,7 @@ class EnemyTest extends FunSuite {
     assertEquals(EnemyTest.Name,"Balrog")
     assertEquals(EnemyTest.ATK,10)
     assertEquals(EnemyTest.Defense,10)
-    assertEquals(EnemyTest.HealthPoints,10)
+    assertEquals(EnemyTest.HP,10)
     assertEquals(EnemyTest.Weight,10)
   }
 }

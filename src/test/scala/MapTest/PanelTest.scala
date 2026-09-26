@@ -1,7 +1,7 @@
 package cl.uchile.dcc
-package PanelTest
+package MapTest
 
-import Mapa.Panel
+import Map.Panel
 
 import munit.FunSuite
 
@@ -12,7 +12,7 @@ class PanelTest extends FunSuite{
     val PanelTest = new Panel(2,2,3,3)
     val expected  = ListBuffer((1,2),(3,2),(2,1),(2,3))
     assertEquals(PanelTest.Neighbourhood,expected)
-    assertEquals(ListBuffer[Character](),PanelTest.UnitsList)
+    assertEquals(PanelTest.UnitsList,ListBuffer[Character]())
   }
 
 }

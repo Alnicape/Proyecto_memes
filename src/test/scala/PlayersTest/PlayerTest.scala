@@ -11,6 +11,6 @@ class PlayerTest extends FunSuite{
     val PlayerTest = new Player("Faker")
     assertEquals(PlayerTest.Name,"Faker")
     assertEquals(PlayerTest.Defeated,false)
-    assertEquals(PlayerTest.Units,ListBuffer())
+    assertEquals(PlayerTest.UnitsList,ListBuffer())
   }
 }

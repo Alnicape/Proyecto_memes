@@ -1,5 +1,5 @@
 package cl.uchile.dcc
-package Mapa
+package Map
 
 import scala.collection.mutable.ListBuffer
 class Panel(val x: Int, val y: Int, val MaxX: Int, val MaxY: Int):
