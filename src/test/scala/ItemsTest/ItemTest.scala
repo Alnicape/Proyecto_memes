@@ -1,8 +1,8 @@
 package cl.uchile.dcc
 package ItemsTest
 
-import cl.uchile.dcc.Units.{Archer, BlackWizard, Knight, Thief, WhiteWizard}
-import cl.uchile.dcc.Items.*
+import Units.{Archer, BlackWizard, Knight, Thief, WhiteWizard}
+import Items.*
 import munit.FunSuite
 
 class ItemTest extends FunSuite{

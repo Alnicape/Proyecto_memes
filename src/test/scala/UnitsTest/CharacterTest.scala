@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package UnitsTest
 
-import cl.uchile.dcc.Units.*
+import Units.*
 import munit.FunSuite
 
 class CharacterTest extends FunSuite {

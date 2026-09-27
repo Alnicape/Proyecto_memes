@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package TurnSchedulerTest
 
-import cl.uchile.dcc.TurnScheduler.TurnScheduler
+import TurnScheduler.TurnScheduler
 import munit.FunSuite
 
 class TurnSchedulerTest extends FunSuite {

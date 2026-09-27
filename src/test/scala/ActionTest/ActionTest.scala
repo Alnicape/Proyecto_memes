@@ -1,10 +1,10 @@
 package cl.uchile.dcc
 package ActionTest
 
-import cl.uchile.dcc.Actions
-import cl.uchile.dcc.Actions.{Attack, ConsumePotion, EquipWeapon, Heal, Meteorite, Move, Purification, Thunder}
-import cl.uchile.dcc.Items.{HealingPotion, Item, Potion, Sword}
-import cl.uchile.dcc.Units.Knight
+
+import Actions.{Attack, ConsumePotion, EquipWeapon, Heal, Meteorite, Move, Purification, Thunder}
+import Items.{HealingPotion, Item, Sword}
+import Units.Knight
 import munit.FunSuite
 
 import scala.collection.mutable.ListBuffer
