@@ -1,5 +1,7 @@
 package cl.uchile.dcc
 package Items
 
-trait Item 
+import Sourse_target.Target
+
+trait Item extends Target
   

@@ -1,7 +1,9 @@
 package cl.uchile.dcc
 package Units
 
-import cl.uchile.dcc.Items.{Item, Weapon}
+import Items.{Item, Weapon}
+
+import cl.uchile.dcc.Sourse_target.{Source, Target}
 
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized

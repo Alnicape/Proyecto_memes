@@ -1,6 +1,8 @@
 package cl.uchile.dcc
 package Items
 
+import Sourse_target.Target
+
 abstract class Potion(val Name:String) extends Item
 
 class HealingPotion(Name:String) extends Potion(Name)
