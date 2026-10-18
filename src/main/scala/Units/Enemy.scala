@@ -13,7 +13,4 @@ class Enemy(val Name:String, var HP: Int, val ATK: Int, var Defense: Int, val We
     ActionBar+=actionQuantity
   }
   def GetActionBar():Int = ActionBar
-  
-  def doAction(target:Target, action: Action) : Unit =
-    target.receiveEnemyAction(this, action)
 }
