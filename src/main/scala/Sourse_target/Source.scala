@@ -4,4 +4,4 @@ package Sourse_target
 import Actions.Action
 
 trait Source:
-  def doAction(target:Target,action:Action): Unit
+  def doAction(target:Target,action:Action[Source,Target]): Unit
