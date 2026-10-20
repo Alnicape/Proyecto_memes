@@ -4,15 +4,13 @@ package Actions
 import Items.{Potion, Weapon}
 import Items.Item
 
-import cl.uchile.dcc.Sourse_target.{Source, Target}
+import cl.uchile.dcc.Sourse_target.{ Source, Target}
 
 import scala.collection.mutable.ListBuffer
 
-abstract class ItemAction(val Name:String) extends Action[Source,Target]:
+abstract class ItemAction(val Name:String) extends Action:
   def Allowed : ListBuffer[Item] = ListBuffer[Item]()
 
-class EquipWeapon(Name:String, val weapon: Weapon) extends ItemAction(Name):
-  def Act(source:Source,target:Target):Unit = ???
-
-class ConsumePotion(Name:String, val potion: Potion) extends ItemAction(Name):
-  def Act(source:Source,target:Target):Unit = ???
+class EquipWeapon(Name:String, val weapon: Weapon) extends ItemAction(Name) with Action
+  
+class ConsumePotion(Name:String, val potion: Potion) extends ItemAction(Name)

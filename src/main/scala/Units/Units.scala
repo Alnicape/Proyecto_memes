@@ -4,7 +4,7 @@ package Units
 import Sourse_target.{Source, Target}
 
 
-trait Units extends Source: //implementar targets cuando se pueda
+trait Units:
   def Name: String
   def HP: Int
   def Defense: Int

@@ -3,5 +3,5 @@ package Items
 
 import Sourse_target.Target
 
-trait Item extends Target
+trait Item
   
