@@ -4,6 +4,6 @@ package Actions
 import Sourse_target.{Source, Target}
 
 
-class Attack(val Name:String) extends Action
+class Attack(val Name:String="Name") extends Action(Name)
 
-class Move(val Name:String) extends Action
+class Move(val direction:String,val Name:String="Move") extends Action(Name)

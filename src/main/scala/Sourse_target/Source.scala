@@ -6,7 +6,7 @@ import Actions.Action
 
 trait Source: 
   def doAction(target:Target,action:Action):Unit
-  def isAlive: Boolean
+  protected def isAlive: Boolean
   def doAttack(target:Target):Unit
 
 trait BlackMagicSource extends Source:

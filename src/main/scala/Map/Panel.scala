@@ -1,8 +1,10 @@
 package cl.uchile.dcc
 package Map
 
+import Sourse_target.PanelTarget
+
 import scala.collection.mutable.ListBuffer
-class Panel(val x: Int, val y: Int, val MaxX: Int, val MaxY: Int):
+class Panel(val x: Int, val y: Int, val MaxX: Int, val MaxY: Int) extends PanelTarget:
   var UnitsList = ListBuffer[Character]() 
   val Neighbourhood : ListBuffer[(Int,Int)] = { //Neighborhood keeps the coordinates from the neighbors of panel, avoiding infinite recursion in the definition of panels
     val PanelList = ListBuffer[(Int,Int)]()
