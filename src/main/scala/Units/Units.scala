@@ -1,10 +1,10 @@
 package cl.uchile.dcc
 package Units
 
-import Sourse_target.{Source, Target, UnitsTarget}
+import Sourse_target.{Source, Target}
 
 
-trait Units extends Source with UnitsTarget:
+trait Units extends Source with Target:
   def Name: String
   def HP: Int
   def Defense: Int

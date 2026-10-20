@@ -1,23 +1,22 @@
 package cl.uchile.dcc
 package Actions
 
-import Sourse_target.{BlackMagicSource, CharacterTarget, EnemyTarget, PanelTarget, Source, Target, UnitsTarget, WhiteMagicSource}
+import Sourse_target.{ Source, Target}
 
 abstract class WhiteWizardAction(Name: String) extends Action(Name)
 abstract class BlackWizardAction(Name: String) extends Action(Name)
 
 class Meteorite(val Name:String="Meteorite") extends BlackWizardAction(Name):
-  def Act(source:BlackMagicSource,target:PanelTarget):Unit =
-    target.receiveMeteorite(source)
+  def Act(source:Source,target:Target):Unit = ???
 
 class Thunder(val Name:String="Thunder") extends BlackWizardAction(Name):
-  def Act(source: BlackMagicSource, target: UnitsTarget): Unit =
+  def Act(source: Source, target: Target): Unit =
       target.receiveThunder(source)
 
 class Heal(val Name:String="Heal") extends WhiteWizardAction(Name):
-  def Act(source: WhiteMagicSource, target: CharacterTarget): Unit =
+  def Act(source: Source, target: Target): Unit =
       target.receiveHeal(source)
 
 class Purification(val Name:String="Purification") extends WhiteWizardAction(Name):
-  def Act(source: WhiteMagicSource, target: EnemyTarget): Unit =
+  def Act(source: Source, target: Target): Unit =
     target.receivePurification(source)

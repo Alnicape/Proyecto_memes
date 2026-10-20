@@ -26,10 +26,9 @@ class ActionTest extends FunSuite{
 
     //EquipWeapon Test
     val GenericKnight = new Knight("Lancelot",10,10,10)
-    val GenericSword = new Sword("Excalibur",10,10,GenericKnight)
+    val GenericSword = new Sword(10,10,GenericKnight)
     val EquipWeaponTest = new EquipWeapon("EquipWeapon",GenericSword)
     assertEquals(EquipWeaponTest.Name,"EquipWeapon")
-    assertEquals(EquipWeaponTest.weapon.Name,"Excalibur")
     assertEquals(EquipWeaponTest.weapon.PhysicalATKPoints,10)
     assertEquals(EquipWeaponTest.weapon.Weight,10)
     assertEquals(EquipWeaponTest.weapon.Owner.Name,"Lancelot")
