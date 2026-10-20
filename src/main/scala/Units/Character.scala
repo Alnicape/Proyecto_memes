@@ -2,7 +2,11 @@ package cl.uchile.dcc
 package Units
 
 import Items.{Item, Weapon}
-import Sourse_target.{CharacterTarget, Source, Target}
+import Sourse_target.{CharacterTarget, Source, Target, UnitsTarget}
+
+import cl.uchile.dcc.Actions.Action
+import cl.uchile.dcc.Exceptions.DeadException
+import cl.uchile.dcc.Map.Panel
 
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
@@ -11,7 +15,7 @@ abstract class Character(val Name:String, private var _HP:Int, var Defense:Int, 
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
-  var WeaponSlot: Option[Weapon] = None 
+  var WeaponSlot: Option[Weapon] = None
   private var ActionBar: Int = 0
 
   def ResetBar(): Unit =
@@ -24,11 +28,10 @@ abstract class Character(val Name:String, private var _HP:Int, var Defense:Int, 
 
   var isAlive: Boolean = HP > 0
 
-  def doAction(target: Target, action: Action): Unit = {
+  def doAction(target: UnitsTarget, action: Action): Unit = {
     if (!target.isAlive) then throw DeadException("La unidad objetivo murió antes")
     if (!this.isAlive) then throw DeadException("La unidad origen murió antes")
     action.Act(this, target)
   }
-
-
+  def currentPosition : Option[Panel] = None
 }

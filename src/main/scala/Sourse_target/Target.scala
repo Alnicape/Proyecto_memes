@@ -10,14 +10,14 @@ trait Target
 trait UnitsTarget extends Target :
   def isAlive : Boolean
   def receiveAttack(source: Units) : Unit
-  def receiveThunder(source:WhiteWizard) : Unit
+  def receiveThunder(source:BlackMagicSource) : Unit
   
 trait EnemyTarget extends UnitsTarget:
-  def receivePurification(source:WhiteWizard):Unit
+  def receivePurification(source:WhiteMagicSource):Unit
 
 trait CharacterTarget extends UnitsTarget:
-  def receiveHeal(source:WhiteWizard):Unit
+  def receiveHeal(source:WhiteMagicSource):Unit
 
 trait PanelTarget extends Target:
-  def receiveMeteorite(source:BlackWizard):Unit
+  def receiveMeteorite(source:BlackMagicSource):Unit
   
