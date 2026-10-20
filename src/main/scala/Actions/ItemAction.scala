@@ -8,9 +8,11 @@ import cl.uchile.dcc.Sourse_target.{ Source, Target}
 
 import scala.collection.mutable.ListBuffer
 
-abstract class ItemAction(val Name:String) extends Action(Name):
+abstract class ItemAction(Name:String) extends Action(Name):
   def Allowed : ListBuffer[Item] = ListBuffer[Item]()
 
-class EquipWeapon(val Name:String ="EquipWeapon", val weapon: Weapon) extends ItemAction(Name)
+class EquipWeapon(val Name:String ="EquipWeapon", val weapon: Weapon) extends ItemAction(Name):
+  def Act(source:Source,target:Target):Unit = ???
   
-class ConsumePotion(val Name:String="ConsumePotion", val potion: Potion) extends ItemAction(Name)
+class ConsumePotion(val Name:String="ConsumePotion", val potion: Potion) extends ItemAction(Name):
+  def Act(source:Source,target:Target):Unit = ???
