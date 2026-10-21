@@ -34,6 +34,6 @@ class TurnScheduler:
     for (x<-UnitsList){if CompletedBar(x) then {completed += x}}
     completed
   }
-  def turn():Units = {
-    CompletedUnits().head
+  def turn():Option[Units] = {
+    CompletedUnits().headOption
   }

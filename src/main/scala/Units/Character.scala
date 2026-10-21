@@ -14,6 +14,7 @@ import scala.compiletime.uninitialized
 abstract class Character(val Name:String, private var _HP:Int, var Defense:Int, val Weight:Int) extends Units{
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
+  
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
   var WeaponSlot: Option[Weapon] = None
   private var ActionBar: Int = 0

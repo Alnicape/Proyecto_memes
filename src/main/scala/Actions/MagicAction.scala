@@ -7,15 +7,16 @@ abstract class WhiteWizardAction(Name: String) extends Action(Name)
 abstract class BlackWizardAction(Name: String) extends Action(Name)
 
 class Meteorite(val Name:String="Meteorite") extends BlackWizardAction(Name):
-  def Act(source:Source,target:Target):Unit = ???
+  def Act(source:Source,target:Target):Unit =
+    target.receiveMeteorite(source)
 
 class Thunder(val Name:String="Thunder") extends BlackWizardAction(Name):
   def Act(source: Source, target: Target): Unit =
-      target.receiveThunder(source)
+    target.receiveThunder(source)
 
 class Heal(val Name:String="Heal") extends WhiteWizardAction(Name):
   def Act(source: Source, target: Target): Unit =
-      target.receiveHeal(source)
+    target.receiveHeal(source)
 
 class Purification(val Name:String="Purification") extends WhiteWizardAction(Name):
   def Act(source: Source, target: Target): Unit =
