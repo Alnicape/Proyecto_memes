@@ -9,7 +9,7 @@ import cl.uchile.dcc.Exceptions.{DeadException, WeaponUnequippedException}
 class Enemy(val Name:String, protected var _HP: Int, val ATK: Int, protected var _Defense: Int, val Weight: Int) extends AbstractUnits{
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
-  
+
   def Defense: Int = _Defense
   def Defense_(value: Int): Unit = _Defense = value
 
@@ -21,16 +21,16 @@ class Enemy(val Name:String, protected var _HP: Int, val ATK: Int, protected var
     action.Act(this, target)
     this.ResetBar()
   }
-  
+
   private var ActionBar: Int = 0
   def ResetBar():Unit = {
     ActionBar = 0
   }
-  
+
   def AddBar(actionQuantity:Int):Unit = {
     ActionBar+=actionQuantity
   }
-  
+
   def GetActionBar():Int = ActionBar
 
   def isAlive: Boolean = HP > 0
@@ -45,5 +45,9 @@ class Enemy(val Name:String, protected var _HP: Int, val ATK: Int, protected var
       case None =>
         throw WeaponUnequippedException("Cannot receive an attack from this source")
     }
+  }
+
+  override def receiveAttackFromEnemy(source: Enemy): Unit = {
+    _HP = _HP - source.ATK
   }
 }

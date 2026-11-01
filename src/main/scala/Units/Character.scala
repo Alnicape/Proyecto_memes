@@ -50,8 +50,12 @@ abstract class Character(val Name:String, protected var _HP:Int, protected var _
       case Some(ownWeapon) =>
         _HP = _HP - ownWeapon.ATKPoints
       case None =>
-        throw WeaponUnequippedException("Cannot receive an attack from this source")  
+        throw WeaponUnequippedException("Cannot receive an attack from this source")
     }
+  }
+
+  override def receiveAttackFromEnemy(source: Enemy): Unit = {
+    _HP = _HP - source.ATK
   }
   
 }

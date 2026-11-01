@@ -18,7 +18,13 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
         throw WeaponUnequippedException("Knight doesn't have a weapon equipped")
     }
   }
-  
+
+  override def receiveAttackFromCharacter(source: Character): Unit = {
+    source.WeaponSlot match{
+      case Some(ownWeapon) =>
+        _HP = _HP - ownWeapon.ATKPoints
+  }
+    }
 }
 
 
