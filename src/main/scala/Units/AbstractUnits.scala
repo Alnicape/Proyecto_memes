@@ -3,6 +3,9 @@ package Units
 
 import Actions.{Action, Attack, EquipWeapon, Move}
 
+import cl.uchile.dcc.Exceptions.InvalidSpellException
+import cl.uchile.dcc.Sourse_target.Target
+
 abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) extends Units {
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
@@ -23,4 +26,6 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
         this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt, this.MaxHP)
     }
   }
+
+
 }

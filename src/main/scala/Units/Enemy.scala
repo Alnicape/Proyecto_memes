@@ -4,7 +4,7 @@ package Units
 import Actions.Action
 import Sourse_target.Target
 
-import cl.uchile.dcc.Exceptions.{DeadException, WeaponUnequippedException}
+import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
 
 class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: Int) extends AbstractUnits(_HP,_Defense){
 
@@ -52,4 +52,7 @@ class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: 
         this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt, this.MaxHP)
     }
   }
+
+  override def doHeal(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doHeal")
 }
