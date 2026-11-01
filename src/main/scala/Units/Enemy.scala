@@ -4,7 +4,7 @@ package Units
 import Actions.Action
 import Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
 import Items.{MagicWeapon, NormalWeapon}
-import Sourse_target.Target
+import Sourse_target.{Source, Target}
 
 class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: Int) extends AbstractUnits(_HP,_Defense){
 
@@ -31,21 +31,21 @@ class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: 
   override def doAttack(target: Target): Unit =
     target.receiveAttackFromEnemy(this)
 
-  override def receiveAttackFromCharacter(source: Character): Unit = {
-    source.WeaponSlot match {
-      case Some(ownWeapon) =>
-        _HP = _HP - ownWeapon.ATKPoints
-      case None =>
-        throw WeaponUnequippedException("Cannot receive an attack from this source")
-    }
-  }
 
-  override def receiveAttackFromEnemy(source: Enemy): Unit = {
-    _HP = _HP - source.ATK
-  }
 
   override def receiveHeal(source: WhiteWizard): Unit = 
     throw InvalidSpellException("This unit cannot be cured")
+
+  override def receivePurification(source: WhiteWizard): Unit = {
+    source.WeaponSlot match{
+      case Some(ownWeapon:MagicWeapon) =>
+        this._HP = math.round(this._HP*0.85).toInt - ownWeapon.MagicATKPoints
+      case Some(ownWeapon:NormalWeapon) =>
+        this._HP = math.round(this._HP*0.85).toInt
+      case None =>
+        this._HP = math.round(this._HP*0.85).toInt
+    }
+  }
 
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")

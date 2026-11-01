@@ -12,8 +12,8 @@ trait Target:
   def receiveAttackFromEnemy(source: Enemy):Unit
 
 
-  def receivePurification(source:Source):Unit
+  def receivePurification(source:WhiteWizard):Unit
   def receiveHeal(source:WhiteWizard):Unit
 
   def receiveMeteorite(source:Source):Unit
-  def receiveThunder(source: Source): Unit
+  def receiveThunder(source: BlackWizard): Unit

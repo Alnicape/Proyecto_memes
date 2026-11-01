@@ -5,7 +5,7 @@ import Items.{Item, Weapon}
 import Sourse_target.{Source, Target}
 
 import cl.uchile.dcc.Actions.{Action, Attack, ConsumePotion, EquipWeapon, Move}
-import cl.uchile.dcc.Exceptions.{DeadException, WeaponUnequippedException}
+import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
 import cl.uchile.dcc.Map.Panel
 
 import scala.collection.mutable.ListBuffer
@@ -37,20 +37,7 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
 
   override def AvailableActions: List[Action] =
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
-
-
-  override def receiveAttackFromCharacter(source: Character): Unit = {
-    source.WeaponSlot match {
-      case Some(ownWeapon) =>
-        _HP = _HP - ownWeapon.ATKPoints
-      case None =>
-        throw WeaponUnequippedException("Cannot receive an attack from this source")
-    }
-  }
-
-  override def receiveAttackFromEnemy(source: Enemy): Unit = {
-    _HP = _HP - source.ATK
-  }
+  
 
   override def receiveHeal(source: WhiteWizard): Unit = {
     source.WeaponSlot match {
@@ -60,4 +47,7 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
         this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt, this.MaxHP)
     }
   }
+
+  override def receivePurification(source: WhiteWizard): Unit =
+    throw InvalidSpellException("Cannot receive Purification")
 }

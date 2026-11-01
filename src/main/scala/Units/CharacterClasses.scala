@@ -26,7 +26,10 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
     throw InvalidSpellException("This unit cannot cast doPurification")
 
   override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")  
+    throw InvalidSpellException("this unit cannot cast doThunder")
+
+  override def doMeteorite(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doMeteorite")   
 }
 
 
@@ -47,7 +50,10 @@ class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Wei
     throw InvalidSpellException("This unit cannot cast doPurification")
 
   override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")  
+    throw InvalidSpellException("this unit cannot cast doThunder")
+    
+  override def doMeteorite(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doMeteorite")    
 }
 
 class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
@@ -67,7 +73,10 @@ class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weig
     throw InvalidSpellException("This unit cannot cast doPurification")
 
   override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")
+    throw InvalidSpellException("This unit cannot cast doThunder")
+
+  override def doMeteorite(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doMeteorite")
 }
 
 
