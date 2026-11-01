@@ -13,7 +13,7 @@ trait Target:
 
 
   def receivePurification(source:Source):Unit
-  def receiveHeal(source:Source):Unit
+  def receiveHeal(source:WhiteWizard):Unit
 
   def receiveMeteorite(source:Source):Unit
   def receiveThunder(source: Source): Unit

@@ -11,14 +11,8 @@ import cl.uchile.dcc.Map.Panel
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
 
-abstract class Character(val Name:String, protected var _HP:Int, protected var _Defense:Int, val Weight:Int) extends AbstractUnits{
-  def HP:Int = _HP
-  def HP_(value:Int):Unit = _HP = value
-
-  def Defense: Int = _Defense
-  def Defense_(value: Int): Unit = _Defense = value
-
-
+abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int) extends AbstractUnits(_HP,_Defense){
+  
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
   var WeaponSlot: Option[Weapon] = None
   private var ActionBar: Int = 0
@@ -57,5 +51,13 @@ abstract class Character(val Name:String, protected var _HP:Int, protected var _
   override def receiveAttackFromEnemy(source: Enemy): Unit = {
     _HP = _HP - source.ATK
   }
-  
+
+  override def receiveHeal(source: WhiteWizard): Unit = {
+    source.WeaponSlot match {
+      case Some(ownWeapon) =>
+        this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt + math.round(ownWeapon.ATKPoints / 4.0).toInt, this.MaxHP)
+      case None =>
+        this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt, this.MaxHP)
+    }
+  }
 }

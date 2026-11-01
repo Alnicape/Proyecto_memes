@@ -3,7 +3,7 @@ package Units
 
 
 import Actions.{Action, Heal, Meteorite, Purification, Thunder}
-import Sourse_target.Target
+import Sourse_target.{Source, Target}
 
 import cl.uchile.dcc.Exceptions.WeaponUnequippedException
 import cl.uchile.dcc.Items.Weapon
@@ -19,12 +19,7 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
     }
   }
 
-  override def receiveAttackFromCharacter(source: Character): Unit = {
-    source.WeaponSlot match{
-      case Some(ownWeapon) =>
-        _HP = _HP - ownWeapon.ATKPoints
-  }
-    }
+
 }
 
 
@@ -37,6 +32,8 @@ class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Wei
         throw WeaponUnequippedException("Archer doesn't have a weapon equipped")
     }
   }
+
+
 }
 
 class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
@@ -48,6 +45,8 @@ class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weig
         throw WeaponUnequippedException("Thief doesn't have a weapon equipped")
     }
   }
+
+
 }
 
 
@@ -63,6 +62,8 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw WeaponUnequippedException("BlackWizard doesn't have a weapon equipped")
     }
   }
+
+  
 }
 
 class WhiteWizard (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int) extends MagicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
@@ -77,4 +78,9 @@ class WhiteWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw WeaponUnequippedException("WhiteWizard doesn't have a weapon equipped")
     }  
   }
+
+  override def doHeal(target: Target): Unit =
+    target.receiveHeal(this)
+    
+
 }
