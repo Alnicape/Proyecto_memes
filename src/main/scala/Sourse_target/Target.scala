@@ -2,17 +2,18 @@ package cl.uchile.dcc
 package Sourse_target
 
 import Actions.Action
-import Units.{Archer, BlackWizard, Enemy, Knight, MagicCharacter, Thief, Units, WhiteWizard}
+import Units.{Archer, BlackWizard, Enemy, Knight, MagicCharacter, Thief, Units, WhiteWizard,Character}
 
 
 trait Target:
 
   def isAlive : Boolean
-  def receiveAttack(source: Units) : Unit
-  def receiveThunder(source:Source) : Unit
+  def receiveAttackFromCharacter(source : Character) : Unit
+  def receiveAttackFromEnemy(source: Enemy):Unit
+
 
   def receivePurification(source:Source):Unit
   def receiveHeal(source:Source):Unit
 
   def receiveMeteorite(source:Source):Unit
-  
+  def receiveThunder(source: Source): Unit

@@ -13,15 +13,20 @@ class Enemy(val Name:String, var HP: Int, val ATK: Int, var Defense: Int, val We
     action.Act(this, target)
     this.ResetBar()
   }
-
+  
   private var ActionBar: Int = 0
   def ResetBar():Unit = {
     ActionBar = 0
   }
+  
   def AddBar(actionQuantity:Int):Unit = {
     ActionBar+=actionQuantity
   }
+  
   def GetActionBar():Int = ActionBar
 
-  protected var isAlive: Boolean = HP > 0
+  def isAlive: Boolean = HP > 0
+
+  override def doAttack(target: Target): Unit =
+    target.receiveAttackFromEnemy(this)
 }
