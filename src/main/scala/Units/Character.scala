@@ -5,13 +5,13 @@ import Items.{Item, Weapon}
 import Sourse_target.{Source, Target}
 
 import cl.uchile.dcc.Actions.{Action, Attack, ConsumePotion, EquipWeapon, Move}
-import cl.uchile.dcc.Exceptions.DeadException
+import cl.uchile.dcc.Exceptions.{DeadException, WeaponUnequippedException}
 import cl.uchile.dcc.Map.Panel
 
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
 
-abstract class Character(val Name:String, private var _HP:Int, private var _Defense:Int, val Weight:Int) extends AbstractUnits{
+abstract class Character(val Name:String, protected var _HP:Int, protected var _Defense:Int, val Weight:Int) extends AbstractUnits{
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
 
@@ -44,4 +44,14 @@ abstract class Character(val Name:String, private var _HP:Int, private var _Defe
   override def AvailableActions: List[Action] = 
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
 
+
+  override def receiveAttackFromCharacter(source: Character): Unit = {
+    source.WeaponSlot match {
+      case Some(ownWeapon) =>
+        _HP = _HP - ownWeapon.ATKPoints
+      case None =>
+        throw WeaponUnequippedException("Cannot receive an attack from this source")  
+    }
+  }
+  
 }

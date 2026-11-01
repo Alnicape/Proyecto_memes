@@ -10,13 +10,15 @@ import cl.uchile.dcc.Items.Weapon
 
 //Normal ones
 class Knight (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
-  override def doAttack(target: Target): Unit =
+  override def doAttack(target: Target): Unit = {
     this.WeaponSlot match{
       case Some(ownWeapon) =>
         target.receiveAttackFromCharacter(this)
       case None =>
         throw WeaponUnequippedException("Knight doesn't have a weapon equipped")
     }
+  }
+  
 }
 
 
