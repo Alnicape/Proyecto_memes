@@ -1,17 +1,17 @@
 package cl.uchile.dcc
 package Items
 
-import Units.{Archer, BlackWizard, Character, Enemy, Knight, Thief, WhiteWizard}
+import Actions.Action
 import Items.Item
-
-import cl.uchile.dcc.Actions.Action
+import Units.{Archer, BlackWizard, Character, Enemy, Knight, Thief, WhiteWizard}
 
 abstract class Weapon(val Name : String, val Weight : Int, val ATKPoints : Int, val Owner: Character) extends Item
 
+abstract class NormalWeapon(override val Name : String,override val Weight : Int,override val ATKPoints : Int,override val Owner: Character) extends Weapon(Name, Weight, ATKPoints, Owner)
 
-class Dagger(Name:String, Weight:Int, ATKPoints:Int, Owner: Character) extends Weapon(Name, Weight, ATKPoints, Owner)
+class Dagger(Name:String, Weight:Int, ATKPoints:Int, Owner: Character) extends NormalWeapon(Name, Weight, ATKPoints, Owner)
   
-class Sword(Name:String, Weight:Int, ATKPoints:Int, Owner: Character) extends Weapon(Name, Weight, ATKPoints, Owner)
+class Sword(Name:String, Weight:Int, ATKPoints:Int, Owner: Character) extends NormalWeapon(Name, Weight, ATKPoints, Owner)
 
-class Bow(Name:String, Weight:Int, ATKPoints:Int, Owner: Character) extends Weapon(Name, Weight, ATKPoints, Owner)
+class Bow(Name:String, Weight:Int, ATKPoints:Int, Owner: Character) extends NormalWeapon(Name, Weight, ATKPoints, Owner)
 

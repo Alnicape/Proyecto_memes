@@ -2,15 +2,15 @@ package cl.uchile.dcc
 package Units
 
 import Actions.Action
+import Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
+import Items.{MagicWeapon, NormalWeapon}
 import Sourse_target.Target
-
-import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
 
 class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: Int) extends AbstractUnits(_HP,_Defense){
 
   def doAction(target: Target, action: Action): Unit = {
-    if (!target.isAlive) then throw DeadException("La unidad objetivo murió antes")
-    if (!this.isAlive) then throw DeadException("La unidad origen murió antes")
+    if !target.isAlive then throw DeadException("La unidad objetivo murió antes")
+    if !this.isAlive then throw DeadException("La unidad origen murió antes")
     action.Act(this, target)
     this.ResetBar()
   }
@@ -54,5 +54,8 @@ class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: 
     throw InvalidSpellException("This unit cannot cast doPurification")
 
   override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")  
+    throw InvalidSpellException("this unit cannot cast doThunder")
+
+  override def doMeteorite(target: Target): Unit =
+    throw InvalidSpellException("this unit cannot cast doMeteorite")  
 }
