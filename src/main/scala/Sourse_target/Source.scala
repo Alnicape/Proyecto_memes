@@ -6,6 +6,9 @@ import Actions.Action
 
 trait Source:
   def doAction(target:Target,action:Action):Unit
+  
+  def AvailableActions:List[Action]
+  
   protected def isAlive: Boolean
   def doAttack(target:Target):Unit
 

@@ -27,8 +27,8 @@ class GameController {
   }
   def getNextTurn: Option[Source] = nextUnit
   
-  def AvailableActions(source:Source):Option[List[Action]] =
-    currentUnit.AvailableActions //To implement later
+  def AvailableActions(source:Source):List[Action] =
+    source.AvailableActions //To implement later
     
   def Resolve(source:Source,target:Target,action:Action):Unit = {
     try source.doAction(target,action)

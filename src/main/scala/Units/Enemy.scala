@@ -6,7 +6,7 @@ import Sourse_target.Target
 
 import cl.uchile.dcc.Exceptions.DeadException
 
-class Enemy(val Name:String, var HP: Int, val ATK: Int, var Defense: Int, val Weight: Int) extends Units{
+class Enemy(val Name:String, var HP: Int, val ATK: Int, var Defense: Int, val Weight: Int) extends AbstractUnits{
   def doAction(target: Target, action: Action): Unit = {
     if (!target.isAlive) then throw DeadException("La unidad objetivo murió antes")
     if (!this.isAlive) then throw DeadException("La unidad origen murió antes")

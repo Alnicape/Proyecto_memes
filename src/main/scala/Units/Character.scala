@@ -2,16 +2,16 @@ package cl.uchile.dcc
 package Units
 
 import Items.{Item, Weapon}
-import Sourse_target.{ Source, Target}
+import Sourse_target.{Source, Target}
 
-import cl.uchile.dcc.Actions.Action
+import cl.uchile.dcc.Actions.{Action, Attack, ConsumePotion, EquipWeapon, Move}
 import cl.uchile.dcc.Exceptions.DeadException
 import cl.uchile.dcc.Map.Panel
 
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
 
-abstract class Character(val Name:String, private var _HP:Int, var Defense:Int, val Weight:Int) extends Units{
+abstract class Character(val Name:String, private var _HP:Int, var Defense:Int, val Weight:Int) extends AbstractUnits{
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
   
@@ -36,4 +36,8 @@ abstract class Character(val Name:String, private var _HP:Int, var Defense:Int, 
     this.ResetBar()
   }
   def currentPosition : Option[Panel] = None
+
+  override def AvailableActions: List[Action] = 
+    new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
+
 }
