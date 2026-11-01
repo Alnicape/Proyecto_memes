@@ -18,14 +18,7 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
   def AvailableActions: List[Action] = List(new Move("North"), new Move("South"), new Move("East"), new Move("West"),
     new Attack())
 
-  override def receiveHeal(source: WhiteWizard): Unit = {
-    source.WeaponSlot match {
-      case Some(ownWeapon) =>
-        this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt + math.round(ownWeapon.ATKPoints / 4.0).toInt, this.MaxHP)
-      case None =>
-        this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt, this.MaxHP)
-    }
-  }
+  
 
 
 }

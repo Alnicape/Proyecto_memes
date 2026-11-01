@@ -12,7 +12,7 @@ import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
 
 abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int) extends AbstractUnits(_HP,_Defense){
-  
+
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
   var WeaponSlot: Option[Weapon] = None
   private var ActionBar: Int = 0
@@ -35,7 +35,7 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
   }
   def currentPosition : Option[Panel] = None
 
-  override def AvailableActions: List[Action] = 
+  override def AvailableActions: List[Action] =
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
 
 

@@ -22,6 +22,11 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
 
+  override def doPurification(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doPurification")
+
+  override def doThunder(target: Target): Unit =
+    throw InvalidSpellException("this unit cannot cast doThunder")  
 }
 
 
@@ -37,8 +42,12 @@ class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Wei
 
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
+  
+  override def doPurification(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doPurification")
 
-
+  override def doThunder(target: Target): Unit =
+    throw InvalidSpellException("this unit cannot cast doThunder")  
 }
 
 class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
@@ -54,6 +63,11 @@ class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weig
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
 
+  override def doPurification(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doPurification")
+
+  override def doThunder(target: Target): Unit =
+    throw InvalidSpellException("this unit cannot cast doThunder")
 }
 
 
@@ -72,6 +86,18 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
 
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
+
+  override def doPurification(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doPurification")
+
+  override def doThunder(target: Target): Unit = {
+    this.WeaponSlot match{
+      case Some(ownWeapon) =>
+        target.receiveThunder(this)
+      case None =>
+        throw WeaponUnequippedException("Cannot cast doThunder without a weapon")
+    }
+  }  
 }
 
 class WhiteWizard (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int) extends MagicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
@@ -89,6 +115,10 @@ class WhiteWizard (override val Name:String, _HP: Int, _Defense: Int, override v
 
   override def doHeal(target: Target): Unit =
     target.receiveHeal(this)
-    
 
+  override def doPurification(target: Target): Unit =
+    target.receivePurification(this)
+
+  override def doThunder(target: Target): Unit =
+    throw InvalidSpellException("this unit cannot cast doThunder")
 }

@@ -44,15 +44,15 @@ class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: 
     _HP = _HP - source.ATK
   }
 
-  override def receiveHeal(source: WhiteWizard): Unit = {
-    source.WeaponSlot match {
-      case Some(ownWeapon) =>
-        this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt + math.round(ownWeapon.ATKPoints / 4.0).toInt, this.MaxHP)
-      case None =>
-        this._HP = math.min(this._HP + math.round(this.MaxHP * 0.2).toInt, this.MaxHP)
-    }
-  }
+  override def receiveHeal(source: WhiteWizard): Unit = 
+    throw InvalidSpellException("This unit cannot be cured")
 
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
+
+  override def doPurification(target: Target): Unit =
+    throw InvalidSpellException("This unit cannot cast doPurification")
+
+  override def doThunder(target: Target): Unit =
+    throw InvalidSpellException("this unit cannot cast doThunder")  
 }
