@@ -5,6 +5,7 @@ import Actions.{Action, Attack, EquipWeapon, Move}
 
 import cl.uchile.dcc.Exceptions.{InvalidInputException, InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
 import cl.uchile.dcc.Items.{MagicWeapon, NormalWeapon}
+import cl.uchile.dcc.Locations.Panel
 import cl.uchile.dcc.Sourse_target.{Source, Target}
 
 abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) extends Units {
@@ -15,6 +16,8 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
 
   def Defense: Int = _Defense
   def Defense_(value: Int): Unit = _Defense = value
+  
+  def CurrentLocation: Option[Panel] = None
 
   def AvailableActions: List[Action] = List(new Move("North"), new Move("South"), new Move("East"), new Move("West"),
     new Attack())

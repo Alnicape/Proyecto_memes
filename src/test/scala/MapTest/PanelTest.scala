@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package MapTest
 
-import Map.Panel
+import Locations.Panel
 
 import munit.FunSuite
 

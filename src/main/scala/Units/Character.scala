@@ -6,7 +6,7 @@ import Sourse_target.{Source, Target}
 
 import cl.uchile.dcc.Actions.{Action, Attack, ConsumePotion, EquipWeapon, Move}
 import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
-import cl.uchile.dcc.Map.Panel
+import cl.uchile.dcc.Locations.Panel
 
 import scala.collection.mutable.ListBuffer
 import scala.compiletime.uninitialized
@@ -33,7 +33,7 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
     action.Act(this, target)
     this.ResetBar()
   }
-  def currentPosition : Option[Panel] = None
+
 
   override def AvailableActions: List[Action] =
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
