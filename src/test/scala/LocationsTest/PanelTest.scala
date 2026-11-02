@@ -1,5 +1,5 @@
 package cl.uchile.dcc
-package MapTest
+package LocationsTest
 
 import Locations.Panel
 

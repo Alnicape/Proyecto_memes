@@ -2,10 +2,9 @@ package cl.uchile.dcc
 package Items
 
 import Actions.Action
-import Sourse_target.Source
+import Source_target.Source
 import Units.{Archer, BlackWizard, Character, Enemy, Knight, MagicCharacter, Thief, WhiteWizard}
 
-import java.lang
 
 abstract class MagicWeapon(Name:String, Weight:Int, PhysicalATKPoints:Int, Owner: Character, val MagicATKPoints : Int) extends Weapon(Name, Weight, PhysicalATKPoints, Owner)
 

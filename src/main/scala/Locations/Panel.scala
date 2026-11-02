@@ -1,14 +1,16 @@
 package cl.uchile.dcc
 package Locations
 
-import Sourse_target.{Source, Target}
+import Source_target.{Source, Target}
 
+import cl.uchile.dcc.Actions.Thunder
 import cl.uchile.dcc.Exceptions.InvalidInputException
-import cl.uchile.dcc.Units.{BlackWizard, Enemy, WhiteWizard}
+import cl.uchile.dcc.Units.{BlackWizard, Enemy, Units, WhiteWizard}
 
 import scala.collection.mutable.ListBuffer
 class Panel(val x: Int, val y: Int) extends Target{
-  var UnitsList : List[Character] = List.empty
+  def Name = "panel"
+  var UnitsList : List[Units] = List.empty
   var North: Option[Panel] = None
   var South: Option[Panel] = None
   var East: Option[Panel] = None
@@ -32,5 +34,32 @@ class Panel(val x: Int, val y: Int) extends Target{
   override def receiveThunder(source: BlackWizard): Unit =
     throw InvalidInputException("A panel cannot receive Thunder")
 
-  override def receiveMeteorite(source: Source): Unit = ???
+  override def receiveMeteorite(source: Source): Unit = {
+    source match{
+      case (s:BlackWizard) =>
+        for (units <- this.UnitsList) units.receiveThunder(s)
+        this.North match{
+          case Some(neighbour) =>
+            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+        }
+        this.South match{
+          case Some(neighbour) =>
+            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+        }
+        this.East match{
+          case Some(neighbour) =>
+            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+        }
+        this.West match{
+          case Some(neighbour) =>
+            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+        }
+      case _ =>
+        throw InvalidInputException("Cannot receive Meteorite from this Source")
+    }
+  }
+
+  override def beSet(source: Units.Character): Unit =
+    throw InvalidInputException("A panel cannot be a weapon")
+  
 }

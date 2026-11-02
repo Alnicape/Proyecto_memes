@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package Actions
 
-import Sourse_target.{ Source, Target}
+import Source_target.{ Source, Target}
 
 
 trait Action(Name: String):

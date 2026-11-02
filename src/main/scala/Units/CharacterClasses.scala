@@ -3,10 +3,10 @@ package Units
 
 
 import Actions.{Action, Heal, Meteorite, Purification, Thunder}
-import Sourse_target.{Source, Target}
+import Source_target.{Source, Target}
 
 import cl.uchile.dcc.Exceptions.{InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
-import cl.uchile.dcc.Items.{MagicWeapon, NormalWeapon, Weapon}
+import cl.uchile.dcc.Items.{Dagger, MagicWeapon, NormalWeapon, Weapon}
 
 //Normal ones
 class Knight (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
@@ -29,7 +29,9 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
     throw InvalidSpellException("this unit cannot cast doThunder")
 
   override def doMeteorite(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doMeteorite")   
+    throw InvalidSpellException("This unit cannot cast doMeteorite")
+
+  var AvailableWeapons: List[String] = List("Sword", "Dagger", "Bow") 
 }
 
 
@@ -43,6 +45,8 @@ class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Wei
     }
   }
 
+  var AvailableWeapons: List[String] = List("Sword", "Wand", "Bow")
+  
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
   
@@ -65,7 +69,7 @@ class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weig
         throw WeaponUnequippedException("Thief doesn't have a weapon equipped")
     }
   }
-
+  var AvailableWeapons: List[String] = List("Sword", "Dagger")
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
 
@@ -92,7 +96,7 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw WeaponUnequippedException("BlackWizard doesn't have a weapon equipped")
     }
   }
-
+  var AvailableWeapons: List[String] = List("Dagger", "Wand", "Staff")
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
 
@@ -133,7 +137,7 @@ class WhiteWizard(override val Name: String, _HP: Int, _Defense: Int, override v
         throw WeaponUnequippedException("WhiteWizard doesn't have a weapon equipped")
       }
     }
-
+  var AvailableWeapons: List[String] = List("Bow", "Wand", "Staff")
   override def doHeal(target: Target): Unit =
     target.receiveHeal(this)
 

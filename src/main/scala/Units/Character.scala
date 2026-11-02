@@ -2,10 +2,10 @@ package cl.uchile.dcc
 package Units
 
 import Items.{Item, Weapon}
-import Sourse_target.{Source, Target}
+import Source_target.{Source, Target}
 
 import cl.uchile.dcc.Actions.{Action, Attack, ConsumePotion, EquipWeapon, Move}
-import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
+import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, InvalidWeaponException, WeaponUnequippedException}
 import cl.uchile.dcc.Locations.Panel
 
 import scala.collection.mutable.ListBuffer
@@ -33,7 +33,8 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
     action.Act(this, target)
     this.ResetBar()
   }
-
+  
+  var AvailableWeapons: List[String]
 
   override def AvailableActions: List[Action] =
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
@@ -50,4 +51,10 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
 
   override def receivePurification(source: WhiteWizard): Unit =
     throw InvalidSpellException("Cannot receive Purification")
+    
+  override def setWeapon(target:Target):Unit = {
+    for (weapon <- AvailableWeapons) if weapon == target.Name then target.beSet(this)
+    else throw InvalidWeaponException("Cannot use this weapon in this character")
+ 
+  }
 }

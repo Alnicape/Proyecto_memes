@@ -2,9 +2,9 @@ package cl.uchile.dcc
 package Units
 
 import Actions.Action
-import Exceptions.{DeadException, InvalidSpellException, WeaponUnequippedException}
+import Exceptions.{DeadException, InvalidInputException, InvalidSpellException, WeaponUnequippedException}
 import Items.{MagicWeapon, NormalWeapon}
-import Sourse_target.{Source, Target}
+import Source_target.{Source, Target}
 
 class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: Int) extends AbstractUnits(_HP,_Defense){
 
@@ -57,5 +57,8 @@ class Enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: 
     throw InvalidSpellException("this unit cannot cast doThunder")
 
   override def doMeteorite(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doMeteorite")  
+    throw InvalidSpellException("this unit cannot cast doMeteorite")
+
+  override def setWeapon(target: Target): Unit =
+    throw InvalidInputException("A enemy cannot have a weapon")  
 }

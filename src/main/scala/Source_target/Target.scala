@@ -1,5 +1,5 @@
 package cl.uchile.dcc
-package Sourse_target
+package Source_target
 
 import Actions.Action
 import Units.{Archer, BlackWizard, Enemy, Knight, MagicCharacter, Thief, Units, WhiteWizard,Character}
@@ -7,6 +7,7 @@ import Units.{Archer, BlackWizard, Enemy, Knight, MagicCharacter, Thief, Units, 
 
 trait Target:
 
+  def Name: String
   def isAlive : Boolean
   def receiveAttackFromCharacter(source : Character) : Unit
   def receiveAttackFromEnemy(source: Enemy):Unit
@@ -17,3 +18,4 @@ trait Target:
 
   def receiveMeteorite(source:Source):Unit
   def receiveThunder(source: BlackWizard): Unit
+  def beSet(source: Character): Unit

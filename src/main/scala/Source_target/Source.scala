@@ -1,7 +1,9 @@
 package cl.uchile.dcc
-package Sourse_target
+package Source_target
 
 import Actions.Action
+
+import cl.uchile.dcc.Items.Weapon
 
 
 trait Source:
@@ -17,3 +19,4 @@ trait Source:
 
   def doHeal(target: Target): Unit
   def doPurification(target: Target): Unit
+  def setWeapon(target:Target) : Unit

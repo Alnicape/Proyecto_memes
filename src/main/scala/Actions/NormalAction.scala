@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package Actions
 
-import Sourse_target.{Source, Target}
+import Source_target.{Source, Target}
 
 
 class Attack(val Name:String="Name") extends Action(Name):

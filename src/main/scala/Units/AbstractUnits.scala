@@ -6,7 +6,7 @@ import Actions.{Action, Attack, EquipWeapon, Move}
 import cl.uchile.dcc.Exceptions.{InvalidInputException, InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
 import cl.uchile.dcc.Items.{MagicWeapon, NormalWeapon}
 import cl.uchile.dcc.Locations.Panel
-import cl.uchile.dcc.Sourse_target.{Source, Target}
+import cl.uchile.dcc.Source_target.{Source, Target}
 
 abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) extends Units {
   def HP:Int = _HP
@@ -48,4 +48,6 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
   override def receiveMeteorite(source: Source): Unit =
     throw InvalidInputException("Units cannot receive Meteorite directly")
 
+  override def beSet(source: Character): Unit =
+    throw InvalidInputException("Cannot set a Unit like a Weapon")
 }

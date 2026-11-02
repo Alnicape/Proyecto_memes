@@ -3,7 +3,7 @@ package Units
 
 import Actions.Action
 
-import cl.uchile.dcc.Sourse_target.Target
+import cl.uchile.dcc.Source_target.Target
 
 abstract class MagicCharacter(Name:String, HP:Int, Defense:Int, Weight:Int,private var _ManaPoints :Int) 
   extends Character(Name,HP,Defense,Weight){
