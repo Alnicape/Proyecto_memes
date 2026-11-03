@@ -3,10 +3,10 @@ package Locations
 
 import Exceptions.InvalidInputException
 import Source_target.{Source, Target}
-import Units.{AbstractUnits, BlackWizard, Enemy, Units, WhiteWizard}
+import Units.{AbstractUnits, BlackWizard, Enemy, units, WhiteWizard}
 class Panel(val x: Int, val y: Int) extends Target{
   def Name = "panel"
-  var UnitsList : List[Units] = List.empty
+  var unitsList : List[units] = List.empty
   var North: Option[Panel] = None
   var South: Option[Panel] = None
   var East: Option[Panel] = None
@@ -33,25 +33,25 @@ class Panel(val x: Int, val y: Int) extends Target{
   override def receiveMeteorite(source: Source): Unit = {
     source match{
       case s:BlackWizard =>
-        for (units <- this.UnitsList) units.receiveThunder(s)
+        for (units <- this.unitsList) units.receiveThunder(s)
         this.North match{
           case Some(neighbour) =>
-            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+            for (units <- neighbour.unitsList) units.receiveThunder(s)
           case None => 
         }
         this.South match{
           case Some(neighbour) =>
-            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+            for (units <- neighbour.unitsList) units.receiveThunder(s)
           case None => 
         }
         this.East match{
           case Some(neighbour) =>
-            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+            for (units <- neighbour.unitsList) units.receiveThunder(s)
           case None => 
         }
         this.West match{
           case Some(neighbour) =>
-            for (units <- neighbour.UnitsList) units.receiveThunder(s)
+            for (units <- neighbour.unitsList) units.receiveThunder(s)
           case None => 
         }
       case _ =>

@@ -8,65 +8,26 @@ import Items.{MagicWeapon, NormalWeapon}
 import Source_target.Target
 
 //Normal ones
-class Knight (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
-  
-  override def doHeal(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doHeal")
-
-  override def doPurification(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doPurification")
-
-  override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")
-
-  override def doMeteorite(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doMeteorite")
+class Knight (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int) extends normalCharacter(Name, _HP, _Defense, Weight) {
 
   var AvailableWeapons: List[String] = List("Sword", "Dagger", "Bow")
 
-
 }
+class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends normalCharacter(Name, _HP, _Defense, Weight) {
 
-
-class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
-  
   var AvailableWeapons: List[String] = List("Sword", "Wand", "Bow")
-  
-  override def doHeal(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doHeal")
-  
-  override def doPurification(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doPurification")
 
-  override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")
-    
-  override def doMeteorite(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doMeteorite")    
 }
-
-class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
+class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends normalCharacter(Name, _HP, _Defense, Weight) {
 
   var AvailableWeapons: List[String] = List("Sword", "Dagger")
-  override def doHeal(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doHeal")
 
-  override def doPurification(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doPurification")
-
-  override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doThunder")
-
-  override def doMeteorite(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doMeteorite")
 }
-
-
-class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int) extends MagicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
+class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int) extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
 
   override def AvailableActions: List[Action] =
     new Meteorite() :: new Thunder() :: super.AvailableActions
-  
+
   var AvailableWeapons: List[String] = List("Dagger", "Wand", "Staff")
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
@@ -82,7 +43,7 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw InvalidWeaponToSpellException("Cannot use this weapon to cast doThunder")
       case None =>
         throw WeaponUnequippedException("Cannot cast doThunder without a weapon")
-      case _ => throw InvalidInputException("Cannot cast doThunder")  
+      case _ => throw InvalidInputException("Cannot cast doThunder")
     }
   }
 
@@ -94,14 +55,14 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw InvalidWeaponToSpellException("Cannot use this weapon to cast doMeteorite")
       case None =>
         throw WeaponUnequippedException("Cannot cast doMeteorite without a weapon")
-      case _ => throw InvalidInputException("Cannot cast doMeteorite")  
+      case _ => throw InvalidInputException("Cannot cast doMeteorite")
     }
   }
 }
-class WhiteWizard(override val Name: String, _HP: Int, _Defense: Int, override val Weight: Int, _ManaPoints: Int) extends MagicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
+class WhiteWizard(override val Name: String, _HP: Int, _Defense: Int, override val Weight: Int, _ManaPoints: Int) extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
   override def AvailableActions: List[Action] =
     new Heal() :: new Purification() :: super.AvailableActions
-  
+
   var AvailableWeapons: List[String] = List("Bow", "Wand", "Staff")
   override def doHeal(target: Target): Unit =
     target.receiveHeal(this)

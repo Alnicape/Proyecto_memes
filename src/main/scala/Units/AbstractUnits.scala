@@ -7,7 +7,7 @@ import Items.{MagicWeapon, NormalWeapon}
 import Locations.Panel
 import Source_target.{Source, Target}
 
-abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) extends Units {
+abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) extends units {
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
 

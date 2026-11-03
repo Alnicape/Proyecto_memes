@@ -6,7 +6,7 @@ import TurnScheduler.TurnScheduler
 import cl.uchile.dcc.Actions.Action
 import cl.uchile.dcc.Exceptions.{DeadException, InvalidInputException, InvalidPanelException, InvalidSpellException, InvalidWeaponException, InvalidWeaponToSpellException, NotEnoughManaException, WeaponUnequippedException}
 import cl.uchile.dcc.Source_target.{Source, Target}
-import cl.uchile.dcc.Units.Units
+import cl.uchile.dcc.Units.units
 
 /**
   * Controlador principal del juego.

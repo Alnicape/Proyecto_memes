@@ -4,7 +4,7 @@ package Units
 import Source_target.{Source, Target}
 
 
-trait Units extends Source with Target:
+trait units extends Source with Target:
   def Name:String
   def HP: Int
   def Defense: Int

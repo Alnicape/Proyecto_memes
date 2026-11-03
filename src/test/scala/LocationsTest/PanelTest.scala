@@ -12,7 +12,7 @@ class PanelTest extends FunSuite{
     val PanelTest = new Panel(2,2,3,3)
     val expected  = ListBuffer((1,2),(3,2),(2,1),(2,3))
     assertEquals(PanelTest.Neighbourhood,expected)
-    assertEquals(PanelTest.UnitsList,ListBuffer[Character]())
+    assertEquals(PanelTest.unitsList,ListBuffer[Character]())
   }
 
 }
