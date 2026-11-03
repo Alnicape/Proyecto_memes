@@ -3,7 +3,8 @@ package Units
 
 import Source_target.target
 
-import cl.uchile.dcc.Exceptions.invalidSpellException
+import cl.uchile.dcc.Exceptions.{invalidPotion, invalidSpellException}
+import cl.uchile.dcc.Items.magicPotion
 
 abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,override val Weight:Int) extends character(Name,_HP,_Defense,Weight){
   override def doHeal(target: target): Unit =
@@ -17,4 +18,13 @@ abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,o
 
   override def doMeteorite(target: target): Unit =
     throw invalidSpellException("This unit cannot cast doMeteorite")
+
+  override def consumePotion(target: target): Unit = {
+    target match{
+      case p:magicPotion =>
+        target.beConsumed(this)
+      case _ =>
+        throw invalidPotion("this character cannot consume magic potions")
+    }
+  }  
 }

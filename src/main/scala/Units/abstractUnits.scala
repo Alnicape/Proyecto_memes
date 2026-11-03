@@ -57,7 +57,7 @@ abstract class abstractUnits(protected var _HP:Int, protected var _Defense:Int) 
       case Some(ownWeapon:MagicWeapon) =>
         if source.ManaPoints <20 then throw notEnoughManaException("Cannot cast thunder without the right amount of mana")
         _HP = _HP - ownWeapon.MagicATKPoints
-        source.discountMana(20)
+        source.ManaPoints_(source.ManaPoints - 30)
       case Some(ownWeapon:NormalWeapon) =>
         throw invalidWeaponToSpellException("Cannot receive Thunder from this weapon")
       case None =>
@@ -73,6 +73,9 @@ abstract class abstractUnits(protected var _HP:Int, protected var _Defense:Int) 
 
   override def beMovedTo(target: target): Unit =
     target.setNewPosition(this)
+    
+  override def beConsumed(character: character) : Unit =
+    throw invalidInputException("A unit cannot be consumed")  
 
   override def setNewPosition(source: abstractUnits): Unit = throw invalidInputException("Cannot move into a Unit")
 }

@@ -13,6 +13,7 @@ abstract class character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
   var WeaponSlot: Option[Weapon] = None
   var AvailableWeapons: List[String]
+  
 
   override def AvailableActions: List[action] =
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
@@ -48,4 +49,5 @@ abstract class character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
     else throw invalidWeaponException("Cannot use this weapon in this character")
  
   }
+  
 }

@@ -19,3 +19,4 @@ trait target:
   def receiveThunder(source: BlackWizard): Unit
   def beSet(source: character): Unit
   def setNewPosition(source:abstractUnits): Unit
+  def beConsumed(source:character):Unit

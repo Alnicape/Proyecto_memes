@@ -3,7 +3,7 @@ package Locations
 
 import Exceptions.invalidInputException
 import Source_target.{source, target}
-import Units.{abstractUnits, BlackWizard, enemy, units, WhiteWizard}
+import Units.{BlackWizard, WhiteWizard, abstractUnits, character, enemy, units}
 class panel(val x: Int, val y: Int) extends target{
   def Name = "panel"
   var unitsList : List[units] = List.empty
@@ -11,6 +11,8 @@ class panel(val x: Int, val y: Int) extends target{
   var South: Option[panel] = None
   var East: Option[panel] = None
   var West: Option[panel] = None
+
+  override def beConsumed(source: character): Unit = throw invalidInputException("A panel cannot be consumed")
     
   override def isAlive:Boolean =
     throw invalidInputException("A panel neither can be Alive nor Dead")

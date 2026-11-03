@@ -35,5 +35,7 @@ class enemy(val Name:String, _HP: Int, val ATK: Int, _Defense: Int, val Weight: 
     throw invalidSpellException("this unit cannot cast doMeteorite")
 
   override def setWeapon(target: target): Unit =
-    throw invalidInputException("A enemy cannot have a weapon")  
+    throw invalidInputException("A enemy cannot have a weapon")
+
+  override def consumePotion(target: target): Unit = throw invalidInputException("An enemy cannot consume potions")
 }

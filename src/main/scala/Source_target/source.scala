@@ -20,5 +20,6 @@ trait source:
   def doPurification(target: target): Unit
   def setWeapon(target:target) : Unit
   def beMovedTo(target:target) : Unit
+  def consumePotion(target:target) : Unit
 
   var currentLocation : Option[panel]
