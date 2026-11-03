@@ -1,12 +1,11 @@
 package cl.uchile.dcc
 package Units
 
-import Actions.{Action, Attack, EquipWeapon, Move}
-
-import cl.uchile.dcc.Exceptions.{InvalidInputException, InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
-import cl.uchile.dcc.Items.{MagicWeapon, NormalWeapon}
-import cl.uchile.dcc.Locations.Panel
-import cl.uchile.dcc.Source_target.{Source, Target}
+import Actions.{Action, Attack, Move}
+import Exceptions.{DeadException, InvalidInputException, InvalidWeaponToSpellException, WeaponUnequippedException}
+import Items.{MagicWeapon, NormalWeapon}
+import Locations.Panel
+import Source_target.{Source, Target}
 
 abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) extends Units {
   def HP:Int = _HP
@@ -21,6 +20,25 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
 
   def AvailableActions: List[Action] = List(new Move("North"), new Attack())
 
+  def doAction(target: Target, action: Action): Unit = {
+    if !target.isAlive then throw new DeadException("Target unit died before")
+    if !this.isAlive then throw new DeadException("Source unit died before")
+    action.Act(this, target)
+    this.ResetBar()
+  }
+
+  private var ActionBar: Int = 0
+
+  def ResetBar(): Unit =
+    ActionBar = 0
+
+  def AddBar(actionQuantity: Int): Unit =
+    ActionBar += actionQuantity
+
+  def GetActionBar(): Int = ActionBar
+
+  def isAlive: Boolean = HP > 0
+  
   override def receiveAttackFromCharacter(source: Character): Unit = {
     source.WeaponSlot match {
       case Some(ownWeapon) =>
@@ -42,6 +60,7 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
         throw InvalidWeaponToSpellException("Cannot receive Thunder from this weapon")
       case None =>
         throw WeaponUnequippedException("Cannot receive Thunder from an unequipped source")
+      case _ => throw InvalidInputException("Cannot receive Thunder from this source")  
     }
 
   override def receiveMeteorite(source: Source): Unit =

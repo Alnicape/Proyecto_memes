@@ -2,23 +2,14 @@ package cl.uchile.dcc
 package Units
 
 
-import Actions.{Action, Heal, Meteorite, Purification, Thunder}
-import Source_target.{Source, Target}
-
-import cl.uchile.dcc.Exceptions.{InvalidInputException, InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
-import cl.uchile.dcc.Items.{Dagger, MagicWeapon, NormalWeapon, Weapon}
+import Actions.*
+import Exceptions.{InvalidInputException, InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
+import Items.{MagicWeapon, NormalWeapon}
+import Source_target.Target
 
 //Normal ones
 class Knight (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
-  override def doAttack(target: Target): Unit = {
-    this.WeaponSlot match{
-      case Some(ownWeapon) =>
-        target.receiveAttackFromCharacter(this)
-      case None =>
-        throw WeaponUnequippedException("Knight doesn't have a weapon equipped")
-    }
-  }
-
+  
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
 
@@ -38,15 +29,7 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
 
 
 class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
-  override def doAttack(target: Target): Unit = {
-    this.WeaponSlot match {
-      case Some(ownWeapon) =>
-        target.receiveAttackFromCharacter(this)
-      case None =>
-        throw WeaponUnequippedException("Archer doesn't have a weapon equipped")
-    }
-  }
-
+  
   var AvailableWeapons: List[String] = List("Sword", "Wand", "Bow")
   
   override def doHeal(target: Target): Unit =
@@ -63,14 +46,7 @@ class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Wei
 }
 
 class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends Character(Name, _HP, _Defense, Weight) {
-  override def doAttack(target: Target): Unit = {
-    this.WeaponSlot match {
-      case Some(ownWeapon) =>
-        target.receiveAttackFromCharacter(this)
-      case None =>
-        throw WeaponUnequippedException("Thief doesn't have a weapon equipped")
-    }
-  }
+
   var AvailableWeapons: List[String] = List("Sword", "Dagger")
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
@@ -87,17 +63,10 @@ class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weig
 
 
 class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int) extends MagicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
+
   override def AvailableActions: List[Action] =
     new Meteorite() :: new Thunder() :: super.AvailableActions
-
-  override def doAttack(target: Target): Unit = {
-    this.WeaponSlot match {
-      case Some(ownWeapon) =>
-        target.receiveAttackFromCharacter(this)
-      case None =>
-        throw WeaponUnequippedException("BlackWizard doesn't have a weapon equipped")
-    }
-  }
+  
   var AvailableWeapons: List[String] = List("Dagger", "Wand", "Staff")
   override def doHeal(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doHeal")
@@ -113,6 +82,7 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw InvalidWeaponToSpellException("Cannot use this weapon to cast doThunder")
       case None =>
         throw WeaponUnequippedException("Cannot cast doThunder without a weapon")
+      case _ => throw InvalidInputException("Cannot cast doThunder")  
     }
   }
 
@@ -124,21 +94,14 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
         throw InvalidWeaponToSpellException("Cannot use this weapon to cast doMeteorite")
       case None =>
         throw WeaponUnequippedException("Cannot cast doMeteorite without a weapon")
+      case _ => throw InvalidInputException("Cannot cast doMeteorite")  
     }
   }
 }
 class WhiteWizard(override val Name: String, _HP: Int, _Defense: Int, override val Weight: Int, _ManaPoints: Int) extends MagicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
   override def AvailableActions: List[Action] =
     new Heal() :: new Purification() :: super.AvailableActions
-    
-  override def doAttack(target: Target): Unit = {
-    this.WeaponSlot match {
-      case Some(ownWeapon) =>
-        target.receiveAttackFromCharacter(this) 
-      case None =>
-        throw WeaponUnequippedException("WhiteWizard doesn't have a weapon equipped")
-      }
-    }
+  
   var AvailableWeapons: List[String] = List("Bow", "Wand", "Staff")
   override def doHeal(target: Target): Unit =
     target.receiveHeal(this)

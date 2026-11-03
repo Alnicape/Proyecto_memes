@@ -3,7 +3,7 @@ package Items
 
 import Exceptions.InvalidInputException
 import Source_target.{Source, Target}
-import Units.{BlackWizard, Enemy, WhiteWizard}
+import Units.{AbstractUnits, BlackWizard, Enemy, WhiteWizard}
 
 trait Item extends Target
 
@@ -15,5 +15,6 @@ abstract class AbstractItem extends Item {
   override def receiveMeteorite(source: Source): Unit = throw InvalidInputException("An item cannot receive damage")
   override def receivePurification(source: WhiteWizard): Unit = throw InvalidInputException("An item cannot receive damage")
   override def receiveThunder(source: BlackWizard): Unit = throw InvalidInputException("An item cannot receive damage")
+  override def setNewPosition(source: AbstractUnits): Unit = throw InvalidInputException("An item cannot be a new position")
 }
   

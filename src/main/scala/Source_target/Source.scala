@@ -2,9 +2,7 @@ package cl.uchile.dcc
 package Source_target
 
 import Actions.Action
-
-import cl.uchile.dcc.Items.Weapon
-import cl.uchile.dcc.Locations.Panel
+import Locations.Panel
 
 
 trait Source:

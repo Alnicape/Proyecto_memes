@@ -1,8 +1,7 @@
 package cl.uchile.dcc
 package Source_target
 
-import Actions.Action
-import Units.{AbstractUnits, Archer, BlackWizard, Character, Enemy, Knight, MagicCharacter, Thief, Units, WhiteWizard}
+import Units.{AbstractUnits, BlackWizard, Character, Enemy, WhiteWizard}
 
 
 trait Target:

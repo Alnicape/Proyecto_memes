@@ -85,5 +85,6 @@ class Panel(val x: Int, val y: Int) extends Target{
             if this == w then source.currentLocation = Some(this)
           case None =>
         }
+      case None =>  
     }
 }

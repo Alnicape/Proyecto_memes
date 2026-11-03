@@ -2,7 +2,7 @@ package cl.uchile.dcc
 package Units
 
 import Actions.{Action, ConsumePotion, EquipWeapon}
-import Exceptions.{DeadException, InvalidSpellException, InvalidWeaponException}
+import Exceptions.{InvalidSpellException, InvalidWeaponException, WeaponUnequippedException}
 import Items.{Item, Weapon}
 import Source_target.Target
 
@@ -12,30 +12,19 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
 
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
   var WeaponSlot: Option[Weapon] = None
-  private var ActionBar: Int = 0
-
-  def ResetBar(): Unit =
-    ActionBar = 0
-
-  def AddBar(actionQuantity: Int): Unit =
-    ActionBar += actionQuantity
-
-  def GetActionBar(): Int = ActionBar
-
-  def isAlive: Boolean = HP > 0
-
-  def doAction(target: Target, action: Action): Unit = {
-    if !target.isAlive then throw new DeadException("La unidad objetivo murió antes")
-    if !this.isAlive then throw new DeadException("La unidad origen murió antes")
-    action.Act(this, target)
-    this.ResetBar()
-  }
-  
   var AvailableWeapons: List[String]
 
   override def AvailableActions: List[Action] =
     new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
-  
+
+  override def doAttack(target: Target): Unit = {
+    this.WeaponSlot match {
+      case Some(ownWeapon) =>
+        target.receiveAttackFromCharacter(this)
+      case None =>
+        throw WeaponUnequippedException("This character doesn't have a weapon equipped")
+    }
+  }
 
   override def receiveHeal(source: WhiteWizard): Unit = {
     source.WeaponSlot match {
