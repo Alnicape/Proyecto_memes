@@ -1,12 +1,12 @@
 package cl.uchile.dcc
 package UnitsTest
 
-import Units.Enemy
+import Units.enemy
 import munit.FunSuite
 
-class EnemyTest extends FunSuite {
+class enemyTest extends FunSuite {
   test("Enemy init works"){
-    val EnemyTest = new Enemy("Balrog",10,10,10,10)
+    val EnemyTest = new enemy("Balrog",10,10,10,10)
     assertEquals(EnemyTest.Name,"Balrog")
     assertEquals(EnemyTest.ATK,10)
     assertEquals(EnemyTest.Defense,10)

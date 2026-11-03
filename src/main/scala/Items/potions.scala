@@ -1,10 +1,10 @@
 package cl.uchile.dcc
 package Items
 
-import Exceptions.InvalidInputException
+import Exceptions.invalidInputException
 
 abstract class Potion(val Name:String) extends AbstractItem {
-  override def beSet(source: Units.Character): Unit = throw InvalidInputException("Cannot set a potion like a weapon")
+  override def beSet(source: Units.character): Unit = throw invalidInputException("Cannot set a potion like a weapon")
 }
 
 class HealingPotion(Name:String) extends Potion(Name)

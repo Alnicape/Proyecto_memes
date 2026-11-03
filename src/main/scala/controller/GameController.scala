@@ -1,12 +1,9 @@
 package cl.uchile.dcc
 package controller
 
-import TurnScheduler.TurnScheduler
-
-import cl.uchile.dcc.Actions.Action
-import cl.uchile.dcc.Exceptions.{DeadException, InvalidInputException, InvalidPanelException, InvalidSpellException, InvalidWeaponException, InvalidWeaponToSpellException, NotEnoughManaException, WeaponUnequippedException}
-import cl.uchile.dcc.Source_target.{Source, Target}
-import cl.uchile.dcc.Units.units
+import Actions.action
+import Source_target.{source, target}
+import TurnScheduler.turnScheduler
 
 /**
   * Controlador principal del juego.
@@ -14,10 +11,10 @@ import cl.uchile.dcc.Units.units
   * entidades de tu modelo, maneja los turnos, y ejecuta las acciones.
   */
 class GameController {
-  private var scheduler: TurnScheduler = new TurnScheduler
-  private var currentUnit: Option[Source] = None
-  def getCurrentUnit: Option[Source] = currentUnit
-  private var nextUnit: Option[Source] = None
+  private var scheduler: turnScheduler = new turnScheduler
+  private var currentUnit: Option[source] = None
+  def getCurrentUnit: Option[source] = currentUnit
+  private var nextUnit: Option[source] = None
   def NextTurn(): Unit = {
     currentUnit = nextUnit
     while(scheduler.turn().isEmpty){
@@ -25,34 +22,20 @@ class GameController {
     }
     nextUnit = scheduler.turn()
   }
-  def getNextTurn: Option[Source] = nextUnit
+  def getNextTurn: Option[source] = nextUnit
   
-  def AvailableActions(source:Source):List[Action] =
+  def AvailableActions(source:source):List[action] =
     source.AvailableActions //To implement later
     
-  def Resolve(source:Source,target:Target,action:Action):Unit = {
+  def Resolve(source:source, target:target, action:action):Unit = {
     try source.doAction(target,action)
     catch
-      case e: DeadException =>
-        println(e.getMessage)
-      case e: InvalidInputException =>
-        println(e.getMessage)
-      case e: InvalidPanelException =>
-        println(e.getMessage)
-      case e: InvalidSpellException =>
-        println(e.getMessage)
-      case e: InvalidWeaponException =>
-        println(e.getMessage)
-      case e: InvalidWeaponToSpellException =>
-        println(e.getMessage)
-      case e: NotEnoughManaException =>
-        println(e.getMessage)
-      case e: WeaponUnequippedException =>
+      case e=>
         println(e.getMessage)
   }
 
   def resetAll():Unit = {
-    scheduler = new TurnScheduler()
+    scheduler = new turnScheduler()
     currentUnit = None
     nextUnit = None
   }

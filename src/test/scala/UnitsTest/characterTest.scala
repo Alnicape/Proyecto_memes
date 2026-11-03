@@ -4,7 +4,7 @@ package UnitsTest
 import Units.*
 import munit.FunSuite
 
-class CharacterTest extends FunSuite {
+class characterTest extends FunSuite {
   test("Character init works"){
     val KnightTest = new Knight("MegaKnight",10,10,10)
     assertEquals(KnightTest.Name,"MegaKnight")

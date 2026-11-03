@@ -7,7 +7,7 @@ import scala.collection.mutable.ListBuffer
 
 
 
-class TurnScheduler:
+class turnScheduler:
   //Attributes
   private def UnitsList : ListBuffer[units] = ListBuffer[units]()
   //Methods

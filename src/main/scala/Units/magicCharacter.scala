@@ -1,14 +1,15 @@
 package cl.uchile.dcc
 package Units
 
-import Actions.Action
+import Actions.action
 
-import cl.uchile.dcc.Source_target.Target
+import cl.uchile.dcc.Source_target.target
 
-abstract class magicCharacter(Name:String, HP:Int, Defense:Int, Weight:Int, private var _ManaPoints :Int) 
-  extends Character(Name,HP,Defense,Weight){
+abstract class magicCharacter(Name:String, HP:Int, Defense:Int, Weight:Int, private var _ManaPoints :Int)
+  extends character(Name,HP,Defense,Weight){
   def ManaPoints: Int = _ManaPoints
   def ManaPoints_(value: Int): Unit = _ManaPoints = value
+  def discountMana(value: Int): Unit = _ManaPoints -= value
 
 }
 

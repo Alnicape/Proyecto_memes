@@ -9,7 +9,7 @@ import munit.FunSuite
 
 import scala.collection.mutable.ListBuffer
 
-class ActionTest extends FunSuite{
+class actionTest extends FunSuite{
   test("Action innit works"){
     val MoveTest = new Move("Move")
     assertEquals(MoveTest.Name,"Move")

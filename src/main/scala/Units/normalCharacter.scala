@@ -1,20 +1,20 @@
 package cl.uchile.dcc
 package Units
 
-import Source_target.Target
+import Source_target.target
 
-import cl.uchile.dcc.Exceptions.InvalidSpellException
+import cl.uchile.dcc.Exceptions.invalidSpellException
 
-abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,override val Weight:Int) extends Character(Name,_HP,_Defense,Weight){
-  override def doHeal(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doHeal")
+abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,override val Weight:Int) extends character(Name,_HP,_Defense,Weight){
+  override def doHeal(target: target): Unit =
+    throw invalidSpellException("This unit cannot cast doHeal")
 
-  override def doPurification(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doPurification")
+  override def doPurification(target: target): Unit =
+    throw invalidSpellException("This unit cannot cast doPurification")
 
-  override def doThunder(target: Target): Unit =
-    throw InvalidSpellException("this unit cannot cast doThunder")
+  override def doThunder(target: target): Unit =
+    throw invalidSpellException("this unit cannot cast doThunder")
 
-  override def doMeteorite(target: Target): Unit =
-    throw InvalidSpellException("This unit cannot cast doMeteorite")
+  override def doMeteorite(target: target): Unit =
+    throw invalidSpellException("This unit cannot cast doMeteorite")
 }

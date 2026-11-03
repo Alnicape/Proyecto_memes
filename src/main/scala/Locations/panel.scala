@@ -1,74 +1,74 @@
 package cl.uchile.dcc
 package Locations
 
-import Exceptions.InvalidInputException
-import Source_target.{Source, Target}
-import Units.{AbstractUnits, BlackWizard, Enemy, units, WhiteWizard}
-class Panel(val x: Int, val y: Int) extends Target{
+import Exceptions.invalidInputException
+import Source_target.{source, target}
+import Units.{abstractUnits, BlackWizard, enemy, units, WhiteWizard}
+class panel(val x: Int, val y: Int) extends target{
   def Name = "panel"
   var unitsList : List[units] = List.empty
-  var North: Option[Panel] = None
-  var South: Option[Panel] = None
-  var East: Option[Panel] = None
-  var West: Option[Panel] = None
+  var North: Option[panel] = None
+  var South: Option[panel] = None
+  var East: Option[panel] = None
+  var West: Option[panel] = None
     
   override def isAlive:Boolean =
-    throw InvalidInputException("A panel neither can be Alive nor Dead")
+    throw invalidInputException("A panel neither can be Alive nor Dead")
 
-  override def receiveAttackFromCharacter(source: Units.Character): Unit =
-    throw InvalidInputException("A panel cannot be attacked")
+  override def receiveAttackFromCharacter(source: Units.character): Unit =
+    throw invalidInputException("A panel cannot be attacked")
 
-  override def receiveAttackFromEnemy(source: Enemy): Unit =
-    throw InvalidInputException("A panel cannot be attacked")
+  override def receiveAttackFromEnemy(source: enemy): Unit =
+    throw invalidInputException("A panel cannot be attacked")
 
   override def receiveHeal(source: WhiteWizard): Unit =
-    throw InvalidInputException("A panel cannot be healed")
+    throw invalidInputException("A panel cannot be healed")
 
   override def receivePurification(source: WhiteWizard): Unit =
-    throw InvalidInputException("A panel cannot be Purified")
+    throw invalidInputException("A panel cannot be Purified")
 
   override def receiveThunder(source: BlackWizard): Unit =
-    throw InvalidInputException("A panel cannot receive Thunder")
+    throw invalidInputException("A panel cannot receive Thunder")
 
-  override def receiveMeteorite(source: Source): Unit = {
+  override def receiveMeteorite(source: source): Unit = {
     source match{
       case s:BlackWizard =>
         for (units <- this.unitsList) units.receiveThunder(s)
         this.North match{
           case Some(neighbour) =>
             for (units <- neighbour.unitsList) units.receiveThunder(s)
-          case None => 
+          case None =>
         }
         this.South match{
           case Some(neighbour) =>
             for (units <- neighbour.unitsList) units.receiveThunder(s)
-          case None => 
+          case None =>
         }
         this.East match{
           case Some(neighbour) =>
             for (units <- neighbour.unitsList) units.receiveThunder(s)
-          case None => 
+          case None =>
         }
         this.West match{
           case Some(neighbour) =>
             for (units <- neighbour.unitsList) units.receiveThunder(s)
-          case None => 
+          case None =>
         }
       case _ =>
-        throw InvalidInputException("Cannot receive Meteorite from this Source")
+        throw invalidInputException("Cannot receive Meteorite from this Source")
     }
   }
 
-  override def beSet(source: Units.Character): Unit =
-    throw InvalidInputException("A panel cannot be a weapon")
+  override def beSet(source: Units.character): Unit =
+    throw invalidInputException("A panel cannot be a weapon")
 
-  override def setNewPosition(source: AbstractUnits): Unit =
+  override def setNewPosition(source: abstractUnits): Unit =
     source.currentLocation match {
       case Some(curr) =>
         curr.North match{
           case Some(n) =>
             if this == n then source.currentLocation = Some(this)
-          case None =>   
+          case None =>
         }
         curr.South match{
           case Some(s) =>
@@ -85,6 +85,6 @@ class Panel(val x: Int, val y: Int) extends Target{
             if this == w then source.currentLocation = Some(this)
           case None =>
         }
-      case None =>  
+      case None =>
     }
 }

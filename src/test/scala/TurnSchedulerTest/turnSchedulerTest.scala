@@ -1,13 +1,13 @@
 package cl.uchile.dcc
 package TurnSchedulerTest
 
-import TurnScheduler.TurnScheduler
+import TurnScheduler.turnScheduler
 import munit.FunSuite
 
-class TurnSchedulerTest extends FunSuite {
+class turnSchedulerTest extends FunSuite {
   
   test("TurnScheduler init Works"){
-    val TST = new TurnScheduler
+    val TST = new turnScheduler
     
   }
   

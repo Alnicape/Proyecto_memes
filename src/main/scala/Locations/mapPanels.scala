@@ -1,10 +1,10 @@
 package cl.uchile.dcc
 package Locations
 
-class MapPanels(val MaxX:Int, val MaxY:Int) {
-  def Panels:Map[(Int,Int),Panel] = {
+class mapPanels(val MaxX:Int, val MaxY:Int) {
+  def Panels:Map[(Int,Int),panel] = {
     val elements = for{x<-0 until MaxX
-        y<-0 until MaxY} yield (x,y) -> new Panel(x,y)
+        y<-0 until MaxY} yield (x,y) -> new panel(x,y)
     elements.toMap
   }
   private def attachNeighbours():Unit = {
@@ -16,5 +16,5 @@ class MapPanels(val MaxX:Int, val MaxY:Int) {
     }
   }
   attachNeighbours()
-  def GetPanel(x:Int,y:Int) : Option[Panel] = Panels.get((x,y))
+  def GetPanel(x:Int,y:Int) : Option[panel] = Panels.get((x,y))
 }
