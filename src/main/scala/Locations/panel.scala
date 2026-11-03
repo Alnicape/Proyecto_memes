@@ -5,8 +5,8 @@ import Exceptions.invalidInputException
 import Source_target.{source, target}
 import Units.{BlackWizard, WhiteWizard, abstractUnits, character, enemy, units}
 class panel(val x: Int, val y: Int) extends target{
-  def Name = "panel"
-  var unitsList : List[units] = List.empty
+  def Name = "Panel"
+  private var unitsList : List[units] = List.empty
   var North: Option[panel] = None
   var South: Option[panel] = None
   var East: Option[panel] = None

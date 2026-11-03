@@ -8,25 +8,25 @@ import Items.{MagicWeapon, NormalWeapon}
 import Source_target.target
 
 //Normal ones
-class Knight (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int) extends normalCharacter(Name, _HP, _Defense, Weight) {
+class Knight (_HP: Int, _Defense: Int, override val Weight:Int, override val Name:String = "Knight" ) extends normalCharacter(Name, _HP, _Defense, Weight) {
 
   var AvailableWeapons: List[String] = List("Sword", "Dagger", "Bow")
 
 }
-class Archer (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends normalCharacter(Name, _HP, _Defense, Weight) {
+class Archer (_HP: Int, _Defense: Int,override val Weight:Int, override val Name:String = "Archer") extends normalCharacter(Name, _HP, _Defense, Weight) {
 
   var AvailableWeapons: List[String] = List("Sword", "Wand", "Bow")
 
 }
-class Thief (override val Name:String, _HP: Int, _Defense: Int,override val Weight:Int) extends normalCharacter(Name, _HP, _Defense, Weight) {
+class Thief (_HP: Int, _Defense: Int,override val Weight:Int, override val Name:String = "Thief") extends normalCharacter(Name, _HP, _Defense, Weight) {
 
   var AvailableWeapons: List[String] = List("Sword", "Dagger")
 
 }
-class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int) extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
+class BlackWizard ( _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int,override val Name:String = "BlackWizard") extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
 
   override def AvailableActions: List[action] =
-    new Meteorite() :: new Thunder() :: super.AvailableActions
+    new meteorite() :: new thunder() :: super.AvailableActions
 
   var AvailableWeapons: List[String] = List("Dagger", "Wand", "Staff")
   override def doHeal(target: target): Unit =
@@ -38,6 +38,7 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
   override def doThunder(target: target): Unit = {
     this.WeaponSlot match {
       case Some(ownWeapon:MagicWeapon) =>
+        this.ManaPoints_(this.ManaPoints-20)
         target.receiveThunder(this)
       case Some(ownWeapon:NormalWeapon) =>
         throw invalidWeaponToSpellException("Cannot use this weapon to cast doThunder")
@@ -50,6 +51,7 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
   override def doMeteorite(target: target): Unit = {
     this.WeaponSlot match {
       case Some(ownWeapon: MagicWeapon) =>
+        this.ManaPoints_(this.ManaPoints-50)
         target.receiveMeteorite(this)
       case Some(ownWeapon: NormalWeapon) =>
         throw invalidWeaponToSpellException("Cannot use this weapon to cast doMeteorite")
@@ -59,9 +61,9 @@ class BlackWizard (override val Name:String, _HP: Int, _Defense: Int, override v
     }
   }
 }
-class WhiteWizard(override val Name: String, _HP: Int, _Defense: Int, override val Weight: Int, _ManaPoints: Int) extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
+class WhiteWizard( _HP: Int, _Defense: Int, override val Weight: Int, _ManaPoints: Int,override val Name:String = "WhiteWizard") extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
   override def AvailableActions: List[action] =
-    new Heal() :: new Purification() :: super.AvailableActions
+    new heal() :: new purification() :: super.AvailableActions
 
   var AvailableWeapons: List[String] = List("Bow", "Wand", "Staff")
   override def doHeal(target: target): Unit =

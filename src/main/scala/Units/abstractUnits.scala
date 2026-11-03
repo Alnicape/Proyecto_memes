@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package Units
 
-import Actions.{Attack, Move, action}
+import Actions.{action, attack, move}
 import Exceptions.{deadException, invalidInputException, invalidWeaponToSpellException, notEnoughManaException, weaponUnequippedException}
 import Items.{MagicWeapon, NormalWeapon}
 import Locations.panel
@@ -18,7 +18,7 @@ abstract class abstractUnits(protected var _HP:Int, protected var _Defense:Int) 
   
   var currentLocation: Option[panel] = None
 
-  def AvailableActions: List[action] = List(new Move("North"), new Attack())
+  def AvailableActions: List[action] = List(new move(), new attack())
 
   def doAction(target: target, action: action): Unit = {
     if !target.isAlive then throw new deadException("Target unit died before")

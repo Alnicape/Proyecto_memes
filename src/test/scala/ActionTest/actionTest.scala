@@ -2,47 +2,32 @@ package cl.uchile.dcc
 package ActionTest
 
 
-import Actions.{Attack, ConsumePotion, EquipWeapon, Heal, Meteorite, Move, Purification, Thunder}
+import Actions.{attack, consumePotion, equipWeapon, heal, meteorite, move, purification, thunder}
 import Items.{HealingPotion, Item, Sword}
 import Units.Knight
+
 import munit.FunSuite
 
 import scala.collection.mutable.ListBuffer
 
 class actionTest extends FunSuite{
   test("Action innit works"){
-    val MoveTest = new Move("Move")
+    val MoveTest = new move()
     assertEquals(MoveTest.Name,"Move")
-    val AttackTest = new Attack("Attack")
+    val AttackTest = new attack()
     assertEquals(AttackTest.Name,"Attack")
-    val MeteoriteTest = new Meteorite("Meteorite")
+    val MeteoriteTest = new meteorite()
     assertEquals(MeteoriteTest.Name,"Meteorite")
-    val HealTest = new Heal("Heal")
+    val HealTest = new heal()
     assertEquals(HealTest.Name,"Heal")
-    val ThunderTest = new Thunder("Thunder")
+    val ThunderTest = new thunder()
     assertEquals(ThunderTest.Name,"Thunder")
-    val PurificationTest = new Purification("Purification")
+    val PurificationTest = new purification()
     assertEquals(PurificationTest.Name,"Purification")
-
-    //EquipWeapon Test
-    val GenericKnight = new Knight("Lancelot",10,10,10)
-    val GenericSword = new Sword(10,10,GenericKnight)
-    val EquipWeaponTest = new EquipWeapon("EquipWeapon",GenericSword)
+    val EquipWeaponTest = new equipWeapon()
     assertEquals(EquipWeaponTest.Name,"EquipWeapon")
-    assertEquals(EquipWeaponTest.weapon.PhysicalATKPoints,10)
-    assertEquals(EquipWeaponTest.weapon.Weight,10)
-    assertEquals(EquipWeaponTest.weapon.Owner.Name,"Lancelot")
-    assertEquals(EquipWeaponTest.weapon.Owner.HP,10)
-    assertEquals(EquipWeaponTest.weapon.Owner.Defense,10)
-    assertEquals(EquipWeaponTest.weapon.Owner.Weight,10)
-    assertEquals(EquipWeaponTest.Allowed,ListBuffer[Item]())
-
-    //ConsumePotion Test
-    val GenericPotion = new HealingPotion("Healing Potion")
-    val ConsumePotionTest = new ConsumePotion("MyHealingPotion",GenericPotion)
-    assertEquals(ConsumePotionTest.Name,"MyHealingPotion")
-    assertEquals(ConsumePotionTest.potion.Name,"Healing Potion")
-
+    val ConsumePotionTest = new consumePotion()
+    assertEquals(ConsumePotionTest.Name,"ConsumePotion")
   }
 
 }

@@ -14,9 +14,9 @@ abstract class Weapon(val Name : String, val Weight : Int, val ATKPoints : Int, 
 
 abstract class NormalWeapon(override val Name : String,override val Weight : Int,override val ATKPoints : Int,override val Owner: character) extends Weapon(Name, Weight, ATKPoints, Owner)
 
-class Dagger(Name:String, Weight:Int, ATKPoints:Int, Owner: character) extends NormalWeapon(Name, Weight, ATKPoints, Owner)
+class Dagger(Weight:Int, ATKPoints:Int, Owner: character,Name:String = "Dagger") extends NormalWeapon(Name, Weight, ATKPoints, Owner)
   
-class Sword(Name:String, Weight:Int, ATKPoints:Int, Owner: character) extends NormalWeapon(Name, Weight, ATKPoints, Owner)
+class Sword(Weight:Int, ATKPoints:Int, Owner: character,Name:String = "Sword") extends NormalWeapon(Name, Weight, ATKPoints, Owner)
 
-class Bow(Name:String, Weight:Int, ATKPoints:Int, Owner: character) extends NormalWeapon(Name, Weight, ATKPoints, Owner)
+class Bow(Weight:Int, ATKPoints:Int, Owner: character,Name:String = "Bow") extends NormalWeapon(Name, Weight, ATKPoints, Owner)
 

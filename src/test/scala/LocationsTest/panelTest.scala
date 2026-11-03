@@ -9,10 +9,14 @@ import scala.collection.mutable.ListBuffer
 
 class panelTest extends FunSuite{
   test("Panel init works"){
-    val PanelTest = new panel(2,2,3,3)
-    val expected  = ListBuffer((1,2),(3,2),(2,1),(2,3))
-    assertEquals(PanelTest.Neighbourhood,expected)
-    assertEquals(PanelTest.unitsList,ListBuffer[Character]())
+    val PanelTest = new panel(2,2)
+    assertEquals(PanelTest.Name,"Panel")
+    assertEquals(PanelTest.North,None)
+    assertEquals(PanelTest.South,None)
+    assertEquals(PanelTest.East,None)
+    assertEquals(PanelTest.West,None)
+    
+    
   }
 
 }

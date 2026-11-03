@@ -4,9 +4,9 @@ package Actions
 import Source_target.{source, target}
 
 
-class Attack(val Name:String="Name") extends action(Name):
+class attack(val Name:String="Attack") extends action(Name):
   def Act(source:source, target:target):Unit = source.doAttack(target)
 
-class Move(val Name:String="Move") extends action(Name):
+class move(val Name:String="Move") extends action(Name):
   def Act(source:source, target:target):Unit =
     source.beMovedTo(target)

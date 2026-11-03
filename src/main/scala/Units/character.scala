@@ -1,7 +1,7 @@
 package cl.uchile.dcc
 package Units
 
-import Actions.{ConsumePotion, EquipWeapon, action}
+import Actions.{consumePotion, equipWeapon, action}
 import Exceptions.{invalidSpellException, invalidWeaponException, invalidWeaponToSpellException, weaponUnequippedException}
 import Items.{Item, MagicWeapon, Weapon}
 import Source_target.target
@@ -16,7 +16,7 @@ abstract class character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
   
 
   override def AvailableActions: List[action] =
-    new EquipWeapon() :: new ConsumePotion()::super.AvailableActions
+    new equipWeapon() :: new consumePotion()::super.AvailableActions
 
   override def doAttack(target: target): Unit = {
     this.WeaponSlot match {
