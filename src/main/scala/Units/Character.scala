@@ -1,15 +1,12 @@
 package cl.uchile.dcc
 package Units
 
+import Actions.{Action, ConsumePotion, EquipWeapon}
+import Exceptions.{DeadException, InvalidSpellException, InvalidWeaponException}
 import Items.{Item, Weapon}
-import Source_target.{Source, Target}
-
-import cl.uchile.dcc.Actions.{Action, Attack, ConsumePotion, EquipWeapon, Move}
-import cl.uchile.dcc.Exceptions.{DeadException, InvalidSpellException, InvalidWeaponException, WeaponUnequippedException}
-import cl.uchile.dcc.Locations.Panel
+import Source_target.Target
 
 import scala.collection.mutable.ListBuffer
-import scala.compiletime.uninitialized
 
 abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int) extends AbstractUnits(_HP,_Defense){
 
@@ -28,8 +25,8 @@ abstract class Character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
   def isAlive: Boolean = HP > 0
 
   def doAction(target: Target, action: Action): Unit = {
-    if (!target.isAlive) then throw new DeadException("La unidad objetivo murió antes")
-    if (!this.isAlive) then throw new DeadException("La unidad origen murió antes")
+    if !target.isAlive then throw new DeadException("La unidad objetivo murió antes")
+    if !this.isAlive then throw new DeadException("La unidad origen murió antes")
     action.Act(this, target)
     this.ResetBar()
   }

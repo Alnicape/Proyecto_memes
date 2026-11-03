@@ -9,10 +9,10 @@ class MapPanels(val MaxX:Int, val MaxY:Int) {
   }
   private def attachNeighbours():Unit = {
     for (((x,y),panel)<-Panels) {
-      if (y>0) then panel.North = Panels.get((x,y-1))
-      if (y < MaxY - 1) then panel.South = Panels.get((x, y + 1))
-      if (x > 0) then panel.West = Panels.get((x - 1, y))
-      if (x < MaxX - 1) then panel.East = Panels.get((x + 1, y))
+      if y>0 then panel.North = Panels.get((x,y-1))
+      if y < MaxY - 1 then panel.South = Panels.get((x, y + 1))
+      if x > 0 then panel.West = Panels.get((x - 1, y))
+      if x < MaxX - 1 then panel.East = Panels.get((x + 1, y))
     }
   }
   attachNeighbours()

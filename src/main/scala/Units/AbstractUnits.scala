@@ -17,10 +17,9 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
   def Defense: Int = _Defense
   def Defense_(value: Int): Unit = _Defense = value
   
-  def CurrentLocation: Option[Panel] = None
+  var currentLocation: Option[Panel] = None
 
-  def AvailableActions: List[Action] = List(new Move("North"), new Move("South"), new Move("East"), new Move("West"),
-    new Attack())
+  def AvailableActions: List[Action] = List(new Move("North"), new Attack())
 
   override def receiveAttackFromCharacter(source: Character): Unit = {
     source.WeaponSlot match {
@@ -50,4 +49,9 @@ abstract class AbstractUnits(protected var _HP:Int,protected var _Defense:Int) e
 
   override def beSet(source: Character): Unit =
     throw InvalidInputException("Cannot set a Unit like a Weapon")
+
+  override def beMovedTo(target: Target): Unit =
+    target.setNewPosition(this)
+
+  override def setNewPosition(source: AbstractUnits): Unit = throw InvalidInputException("Cannot move into a Unit")  
 }

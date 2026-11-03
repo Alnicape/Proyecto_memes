@@ -3,8 +3,6 @@ package Actions
 
 import Source_target.{Source, Target}
 
-import cl.uchile.dcc.Units.WhiteWizard
-
 abstract class WhiteWizardAction(Name: String) extends Action(Name)
 abstract class BlackWizardAction(Name: String) extends Action(Name)
 

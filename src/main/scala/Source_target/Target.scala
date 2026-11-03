@@ -2,7 +2,7 @@ package cl.uchile.dcc
 package Source_target
 
 import Actions.Action
-import Units.{Archer, BlackWizard, Enemy, Knight, MagicCharacter, Thief, Units, WhiteWizard,Character}
+import Units.{AbstractUnits, Archer, BlackWizard, Character, Enemy, Knight, MagicCharacter, Thief, Units, WhiteWizard}
 
 
 trait Target:
@@ -19,3 +19,4 @@ trait Target:
   def receiveMeteorite(source:Source):Unit
   def receiveThunder(source: BlackWizard): Unit
   def beSet(source: Character): Unit
+  def setNewPosition(source:AbstractUnits): Unit

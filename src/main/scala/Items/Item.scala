@@ -1,10 +1,9 @@
 package cl.uchile.dcc
 package Items
 
+import Exceptions.InvalidInputException
 import Source_target.{Source, Target}
-
-import cl.uchile.dcc.Exceptions.InvalidInputException
-import cl.uchile.dcc.Units.{BlackWizard, Enemy, WhiteWizard}
+import Units.{BlackWizard, Enemy, WhiteWizard}
 
 trait Item extends Target
 

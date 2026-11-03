@@ -1,12 +1,8 @@
 package cl.uchile.dcc
 package Actions
 
-import Items.{Potion, Weapon}
 import Items.Item
-
-import cl.uchile.dcc.Source_target.{ Source, Target}
-
-import scala.collection.mutable.ListBuffer
+import Source_target.{Source, Target}
 
 abstract class ItemAction(Name:String) extends Action(Name):
   var Allowed : List[Item] = List[Item]()

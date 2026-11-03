@@ -5,7 +5,7 @@ package Units
 import Actions.{Action, Heal, Meteorite, Purification, Thunder}
 import Source_target.{Source, Target}
 
-import cl.uchile.dcc.Exceptions.{InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
+import cl.uchile.dcc.Exceptions.{InvalidInputException, InvalidSpellException, InvalidWeaponToSpellException, WeaponUnequippedException}
 import cl.uchile.dcc.Items.{Dagger, MagicWeapon, NormalWeapon, Weapon}
 
 //Normal ones
@@ -31,7 +31,9 @@ class Knight (override val Name:String, _HP: Int, _Defense: Int, override val We
   override def doMeteorite(target: Target): Unit =
     throw InvalidSpellException("This unit cannot cast doMeteorite")
 
-  var AvailableWeapons: List[String] = List("Sword", "Dagger", "Bow") 
+  var AvailableWeapons: List[String] = List("Sword", "Dagger", "Bow")
+
+
 }
 
 

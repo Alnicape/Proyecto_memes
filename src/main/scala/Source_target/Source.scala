@@ -4,6 +4,7 @@ package Source_target
 import Actions.Action
 
 import cl.uchile.dcc.Items.Weapon
+import cl.uchile.dcc.Locations.Panel
 
 
 trait Source:
@@ -20,3 +21,6 @@ trait Source:
   def doHeal(target: Target): Unit
   def doPurification(target: Target): Unit
   def setWeapon(target:Target) : Unit
+  def beMovedTo(target:Target) : Unit
+  
+  var currentLocation : Option[Panel]
