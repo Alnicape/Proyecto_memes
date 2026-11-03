@@ -3,7 +3,7 @@ package Units
 
 import Source_target.target
 
-import cl.uchile.dcc.Exceptions.{invalidPotion, invalidSpellException}
+import cl.uchile.dcc.Exceptions.{ invalidPotionException, invalidSpellException}
 import cl.uchile.dcc.Items.magicPotion
 
 abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,override val Weight:Int) extends character(Name,_HP,_Defense,Weight){
@@ -24,7 +24,7 @@ abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,o
       case p:magicPotion =>
         target.beConsumed(this)
       case _ =>
-        throw invalidPotion("this character cannot consume magic potions")
+        throw invalidPotionException("this character cannot consume magic potions")
     }
   }  
 }
