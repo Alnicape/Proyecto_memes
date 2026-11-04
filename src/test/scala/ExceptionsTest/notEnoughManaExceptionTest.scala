@@ -1,10 +1,11 @@
 package cl.uchile.dcc
 package ExceptionsTest
 
-import cl.uchile.dcc.Actions.{equipWeapon, purification}
-import cl.uchile.dcc.Exceptions.notEnoughManaException
-import cl.uchile.dcc.Items.Staff
-import cl.uchile.dcc.Units.{WhiteWizard, enemy}
+import Actions.{equipWeapon, purification}
+import Exceptions.notEnoughManaException
+import Items.Staff
+import Units.{WhiteWizard, enemy}
+
 import munit.FunSuite
 
 class notEnoughManaExceptionTest extends FunSuite {
