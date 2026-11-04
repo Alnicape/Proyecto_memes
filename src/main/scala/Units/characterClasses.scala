@@ -67,10 +67,27 @@ class WhiteWizard( _HP: Int, _Defense: Int, override val Weight: Int, _ManaPoint
 
   var AvailableWeapons: List[String] = List("Bow", "Wand", "Staff")
   override def doHeal(target: target): Unit =
-    target.receiveHeal(this)
-
+    this.WeaponSlot match {
+      case Some(ownWeapon: MagicWeapon) =>
+        this.ManaPoints_(this.ManaPoints - 15)
+        target.receiveHeal(this)
+      case Some(ownWeapon: NormalWeapon) =>
+        throw invalidWeaponToSpellException("Cannot use this weapon to cast doHeal")
+      case None =>
+        throw weaponUnequippedException("Cannot cast doHeal without a weapon")
+      case _ => throw invalidInputException("Cannot cast doHeal")
+    }
   override def doPurification(target: target): Unit =
-    target.receivePurification(this)
+    this.WeaponSlot match {
+      case Some(ownWeapon: MagicWeapon) =>
+        this.ManaPoints_(this.ManaPoints - 25)
+        target.receivePurification(this)
+      case Some(ownWeapon: NormalWeapon) =>
+        throw invalidWeaponToSpellException("Cannot use this weapon to cast doPurification")
+      case None =>
+        throw weaponUnequippedException("Cannot cast doPurification without a weapon")
+      case _ => throw invalidInputException("Cannot cast doPurification")
+    }
 
   override def doThunder(target: target): Unit =
     throw invalidSpellException("this unit cannot cast doThunder")
