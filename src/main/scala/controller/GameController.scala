@@ -7,11 +7,6 @@ import TurnScheduler.turnScheduler
 
 import cl.uchile.dcc.Units.units
 
-/**
-  * Controlador principal del juego.
-  * En esta clase debes implementar la lógica que conecta las distintas
-  * entidades de tu modelo, maneja los turnos, y ejecuta las acciones.
-  */
 class GameController {
   private var scheduler: turnScheduler = new turnScheduler
   private var currentUnit: Option[units] = None
