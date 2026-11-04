@@ -45,9 +45,12 @@ abstract class character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int)
     throw invalidSpellException("Cannot receive Purification")
     
   override def setWeapon(target:target):Unit = {
-    for (weapon <- AvailableWeapons) if weapon == target.Name then target.beSet(this)
-    else throw invalidWeaponException("Cannot use this weapon in this character")
- 
+    AvailableWeapons.find(name => name==target.Name) match {
+      case Some(available) =>
+        target.beSet(this)
+      case None =>
+        throw invalidWeaponException("Cannot use this weapon in this character")
+    }
   }
   
 }
