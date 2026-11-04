@@ -9,7 +9,9 @@ import scala.collection.mutable.ListBuffer
 
 class turnScheduler:
   //Attributes
-  private def UnitsList : ListBuffer[units] = ListBuffer[units]()
+  private val UnitsList : ListBuffer[units] = ListBuffer[units]()
+
+  def getUnitList : ListBuffer[units] = UnitsList
   //Methods
   def PutUnit(puttedUnit:units) : Unit = {
     UnitsList += puttedUnit
@@ -26,7 +28,7 @@ class turnScheduler:
   def MaxBar(unit:units) : Int = {
     unit.Weight //Still don't know how to implement because the difference between character and enemy maxBar
   }
-  private def CompletedBar(unit:units): Boolean = {
+  def CompletedBar(unit:units): Boolean = {
     unit.GetActionBar()>=unit.Weight
   }
   private def CompletedUnits(): ListBuffer[units] = { //Neither I know how to sort them nor how to manage ties

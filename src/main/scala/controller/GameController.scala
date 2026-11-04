@@ -5,6 +5,8 @@ import Actions.action
 import Source_target.{source, target}
 import TurnScheduler.turnScheduler
 
+import cl.uchile.dcc.Units.units
+
 /**
   * Controlador principal del juego.
   * En esta clase debes implementar la lógica que conecta las distintas
@@ -12,19 +14,31 @@ import TurnScheduler.turnScheduler
   */
 class GameController {
   private var scheduler: turnScheduler = new turnScheduler
-  private var currentUnit: Option[source] = None
-  def getCurrentUnit: Option[source] = currentUnit
-  private var nextUnit: Option[source] = None
+  private var currentUnit: Option[units] = None
+  private var nextUnit: Option[units] = None
+
+  def putUnit(unit:units):Unit =
+    scheduler.PutUnit(unit)
+
+  def getCurrentUnit: Option[units] = currentUnit
+
   def NextTurn(): Unit = {
-    currentUnit = nextUnit
-    while(scheduler.turn().isEmpty){
-      scheduler.AddAllBars(1)
+    if nextUnit.isEmpty then{
+      while (scheduler.turn().isEmpty) {
+        scheduler.AddAllBars(1)
+      }
+      currentUnit = scheduler.turn()
+    }else {
+      currentUnit = nextUnit
+      while (scheduler.turn().isEmpty) {
+        scheduler.AddAllBars(1)
+      }
+      nextUnit = scheduler.turn()
     }
-    nextUnit = scheduler.turn()
   }
-  def getNextTurn: Option[source] = nextUnit
+  def getNextTurn: Option[units] = nextUnit
   
-  def AvailableActions(source:source):List[action] =
+  def AvailableActions(source:units):List[action] =
     source.AvailableActions //To implement later
     
   def Resolve(source:source, target:target, action:action):Unit = {
