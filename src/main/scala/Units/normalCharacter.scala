@@ -1,11 +1,11 @@
 package cl.uchile.dcc
 package Units
 
+import Exceptions.{invalidPotionException, invalidSpellException}
+import Items.magicPotion
 import Source_target.target
 
-import cl.uchile.dcc.Exceptions.{ invalidPotionException, invalidSpellException}
-import cl.uchile.dcc.Items.magicPotion
-
+//it's used to set the difference between a magicCharacter and a normal one
 abstract class normalCharacter(override val Name:String, _HP:Int, _Defense:Int,override val Weight:Int) extends character(Name,_HP,_Defense,Weight){
   override def doHeal(target: target): Unit =
     throw invalidSpellException("This unit cannot cast doHeal")

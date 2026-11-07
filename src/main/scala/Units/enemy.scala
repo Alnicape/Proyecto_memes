@@ -5,6 +5,8 @@ import Exceptions.{invalidInputException, invalidSpellException, invalidWeaponTo
 import Items.MagicWeapon
 import Source_target.target
 
+
+//class enemy is different from a character, because it can't equip weapons or have an inventory
 class enemy( _HP: Int, val ATK: Int, _Defense: Int, val Weight: Int,val Name:String="Enemy") extends abstractUnits(_HP,_Defense){
 
   override def doAttack(target: target): Unit =

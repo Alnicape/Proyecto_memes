@@ -6,7 +6,7 @@ import Units.units
 import scala.collection.mutable.ListBuffer
 
 
-
+//turnScheduler is the class that helps the GameController to keep the game logic "alive"
 class turnScheduler:
   //Attributes
   private val UnitsList : ListBuffer[units] = ListBuffer[units]()

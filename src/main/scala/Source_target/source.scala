@@ -4,7 +4,7 @@ package Source_target
 import Actions.action
 import Locations.panel
 
-
+//source is the class that do the action
 trait source:
   def doAction(target:target, action:action):Unit
   

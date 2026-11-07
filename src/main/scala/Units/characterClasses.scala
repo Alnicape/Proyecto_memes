@@ -23,6 +23,8 @@ class Thief (_HP: Int, _Defense: Int,override val Weight:Int, override val Name:
   var AvailableWeapons: List[String] = List("Sword", "Dagger")
 
 }
+
+//magical ones
 class BlackWizard ( _HP: Int, _Defense: Int, override val Weight:Int, _ManaPoints:Int,override val Name:String = "BlackWizard") extends magicCharacter(Name, _HP, _Defense, Weight, _ManaPoints) {
 
   override def AvailableActions: List[action] =

@@ -3,7 +3,7 @@ package Source_target
 
 import Units.{abstractUnits, BlackWizard, character, enemy, WhiteWizard}
 
-
+//target is the class that receives an action from a source
 trait target:
 
   def Name: String

@@ -7,6 +7,7 @@ import Units.{abstractUnits, BlackWizard, enemy, WhiteWizard}
 
 trait Item extends target
 
+//almost every item cannot do or receive an action, but the exceptions are treated in each class that implements some action
 abstract class AbstractItem extends Item {
   override def isAlive: Boolean = true //done this way to be capable of bypass the "alive" requisite
   override def receiveAttackFromCharacter(source: Units.character): Unit = throw invalidInputException("An item cannot be attacked")

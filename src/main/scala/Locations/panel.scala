@@ -4,6 +4,7 @@ package Locations
 import Exceptions.invalidInputException
 import Source_target.{source, target}
 import Units.{BlackWizard, WhiteWizard, abstractUnits, character, enemy, units}
+//each panel keeps their neighbors, coordinates and some functions to be referenced if someone throws an attack that do area damage
 class panel(val x: Int, val y: Int) extends target{
   def Name = "Panel"
   private var unitsList : List[units] = List.empty
@@ -31,7 +32,8 @@ class panel(val x: Int, val y: Int) extends target{
 
   override def receiveThunder(source: BlackWizard): Unit =
     throw invalidInputException("A panel cannot receive Thunder")
-
+  
+  //implemented with pattern matching to avoid type errors
   override def receiveMeteorite(source: source): Unit = {
     source match{
       case s:BlackWizard =>

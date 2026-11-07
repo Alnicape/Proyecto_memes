@@ -7,6 +7,7 @@ import Items.{MagicWeapon, NormalWeapon}
 import Locations.panel
 import Source_target.{source, target}
 
+//abstractUnits helps to implement some common functions between an enemy and a character
 abstract class abstractUnits(protected var _HP:Int, protected var _Defense:Int) extends units {
   def HP:Int = _HP
   def HP_(value:Int):Unit = _HP = value
@@ -21,8 +22,8 @@ abstract class abstractUnits(protected var _HP:Int, protected var _Defense:Int) 
   def AvailableActions: List[action] = List(new move(), new attack())
 
   def doAction(target: target, action: action): Unit = {
-    if !target.isAlive then throw new deadException("Target unit died before")
-    if !this.isAlive then throw new deadException("Source unit died before")
+    if !target.isAlive then throw deadException("Target unit died before")
+    if !this.isAlive then throw deadException("Source unit died before")
     action.Act(this, target)
     this.ResetBar()
   }

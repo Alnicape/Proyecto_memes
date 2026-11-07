@@ -8,6 +8,7 @@ import Source_target.target
 
 import scala.collection.mutable.ListBuffer
 
+//abstract class character gives the common functions that a character can do, whenever is a magical one or a normal one
 abstract class character(val Name:String, _HP:Int, _Defense:Int, val Weight:Int) extends abstractUnits(_HP,_Defense){
 
   var Inventory: ListBuffer[Item] = ListBuffer.empty[Item]
