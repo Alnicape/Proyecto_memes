@@ -2,13 +2,14 @@ package cl.uchile.dcc
 package controller
 
 import Actions.action
+import PatronObserver.{Observer, Subject}
+import Players.player
 import Source_target.{source, target}
 import TurnScheduler.turnScheduler
-
-import cl.uchile.dcc.Units.units
+import Units.units
 
 //gameController is the one that takes the responsibility of the gameplay itself
-class GameController {
+class GameController extends Observer[Boolean] {
   //each GameController have a scheduler that cannot be affected from the outside
   private var scheduler: turnScheduler = new turnScheduler
   //currentUnit helps to distribute the order of the gameplay
@@ -17,9 +18,11 @@ class GameController {
   private var nextUnit: Option[units] = None
   
   //putUnit helps to implement a new character to the game
-  def putUnit(unit:units):Unit =
+  def putUnit(Player:player,unit:units):Unit = {
+    Player.summon(unit)
     scheduler.PutUnit(unit)
-  
+  }
+
   //getCurrentUnit is a getter of CurrentUnit
   def getCurrentUnit: Option[units] = currentUnit
   
@@ -59,4 +62,11 @@ class GameController {
     currentUnit = None
     nextUnit = None
   }
+
+  override def update(subject: Subject[Boolean], response: Boolean): Unit =
+    if response then
+      println("A player died now")
 }
+//I am still looking for a better way to notify about a player defeated,
+//because units don't know who is their owner (the player)
+//Maybe It will be Refactorized later
